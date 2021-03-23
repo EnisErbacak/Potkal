@@ -1,0 +1,25 @@
+class TaskDownloadZip extends AsyncTask<Void,Void,Void>
+{
+    com.google.api.services.drive.Drive.Files.Get request;
+    Context context;
+
+
+    public TaskDownloadZip(com.google.api.services.drive.Drive.Files.Get request,Context context)
+    {
+        this.request=request;
+        this.context=context;
+    }
+
+    @Override
+    protected Void doInBackground(Void... voids) {
+        try {
+            OutputStream out = new FileOutputStream(new java.io.File(MainFileOperator.getInstance(context).getZipPath(), "imported_zip"));
+            request.executeMediaAndDownloadTo(out);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}

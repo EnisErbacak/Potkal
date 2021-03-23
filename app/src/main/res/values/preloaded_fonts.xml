@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/alex_brush</item>
+        <item>@font/arizonia</item>
+        <item>@font/bilbo_swash_caps</item>
+        <item>@font/calligraffitti</item>
+        <item>@font/herr_von_muellerhoff</item>
+        <item>@font/kristi</item>
+        <item>@font/la_belle_aurore</item>
+        <item>@font/playball</item>
+        <item>@font/tangerine</item>
+        <item>@font/zeyada</item>
+    </array>
+</resources>
