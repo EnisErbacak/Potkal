@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WordDef_Fragment</string>
+    <string name="menu">Menü</string>
+    <string name="select_text_size">Yazı Boyutu Seçin</string>
+    <string name="select_language">Dil Seçin</string>
+    <string name="select_theme">Tema Seçin</string>
+    <string name="backed_up">Yedeklendi!</string>
+    <string name="restored">Geri Yüklendi!</string>
+    <string name="added">Eklendi!</string>
+    <string name="deleted">Kaldırıldı!</string>
+    <string name="renamed">İsim Değiştirildi!</string>
+    <string name="saved">Kaydedildi!</string>
+    <string name="goodbye">Hoşça Kalın!</string>
+    <string name="welcome">Hoş Geldin!</string>
+    <string name="finished">Tamamlandı!</string>
+    <string name="done">Bitti!</string>
+    <string name="error">Hata!</string>
+    <string name="changed">Değiştirildi!</string>
+    <string name="no_set_to_backup">Yedeklenecek Dosya Yok!</string>
+    <string name="no_file_in_gdrive">GDrive\'da Dosya Yok!</string>
+    <string name="please_sig_in_first">Lütfen Önce Giriş Yapın!</string>
+    <string name="no_result">Sonuç Bulunamadı!</string>
+    <string name="no_internet_connection">İnternet Bağlantısı Yok!</string>
+</resources>
