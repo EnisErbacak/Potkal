@@ -7,8 +7,8 @@ public class GDriveTaskFactory {
     public GDriveTask create(String task, Context context, Token token) {
         GDriveTask returnTask;
         switch (task.toLowerCase()) {
-            case "login":
-                returnTask= new Login(context, token);
+            case "signin":
+                returnTask= new SingIn(context, token);
                 break;
             case "connect":
                 returnTask= new Connect(context, token);

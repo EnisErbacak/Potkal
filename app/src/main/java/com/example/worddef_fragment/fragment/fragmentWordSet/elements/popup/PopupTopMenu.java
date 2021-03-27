@@ -13,7 +13,6 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.worddef_fragment.R;
 import com.example.worddef_fragment.fragment.fragment_settings.FragmentSettings;
-import com.example.worddef_fragment.cloud_service.gDrive.GClass;
 import com.example.worddef_fragment.cloud_service.manager.CloudManagerFactory;
 import com.example.worddef_fragment.other.ScannerActivity;
 
@@ -37,10 +36,9 @@ public class PopupTopMenu extends PopupMenu {
 
     public void onCreate() {
         //	add(int groupId, int itemId, int order, CharSequence title)
-        getMenu().add(0, 0, Menu.NONE, "Sign In Google");
-        getMenu().add(0, 1, Menu.NONE, "Backup");
-        getMenu().add(0, 2, Menu.NONE, "Restore");
-        getMenu().add(0, 3, Menu.NONE, "Settings");
+        getMenu().add(0, 0, Menu.NONE, "Backup");
+        getMenu().add(0, 1, Menu.NONE, "Restore");
+        getMenu().add(0, 2, Menu.NONE, "Settings");
     }
 
     private class PopupMainOptsLstnr implements PopupMenu.OnMenuItemClickListener {
@@ -55,22 +53,19 @@ public class PopupTopMenu extends PopupMenu {
         public boolean onMenuItemClick(MenuItem itm) {
             pb=new ScannerActivity().scanForActivity(anchor.getContext()).findViewById(R.id.pBarWordSet);
             switch (itm.getItemId()) {
-                case 0:
 
-                    new GClass(context).login();
-                    break;
-                case 1:
+                case 0:
                     String srcPath=anchor.getContext().getFilesDir().getPath() + File.separator + "wordset_files";
                     new CloudManagerFactory().create("gdrive",pb).backup(context, srcPath);
                     break;
-                case 2:
+                case 1:
                     //new GClass(context).restore();
 
                     String srcPath2=anchor.getContext().getFilesDir().getPath() + File.separator + "unzip_files";
                     new CloudManagerFactory().create("gdrive", pb).restore(context, srcPath2);
                     break;
 
-                case 3:
+                case 2:
                     FragmentSettings fragmentSettings=new FragmentSettings();
                     getFragmentManager(anchor).beginTransaction().replace(R.id.containerActivityMain, fragmentSettings).commit();
                     break;

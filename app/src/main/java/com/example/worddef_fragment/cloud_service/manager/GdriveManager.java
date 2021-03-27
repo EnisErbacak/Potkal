@@ -1,5 +1,6 @@
 package com.example.worddef_fragment.cloud_service.manager;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
@@ -16,6 +17,9 @@ import com.example.worddef_fragment.file.path_picker.PathPicker;
 import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
 import com.example.worddef_fragment.file.transporter.FileTransferFactory;
 import com.example.worddef_fragment.file.transporter.FileTransporter;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -51,7 +55,7 @@ public class GdriveManager implements CloudManager{
                     ExecutorService executor2 = Executors.newCachedThreadPool();
                     GDriveTaskFactory taskFactory = new GDriveTaskFactory();
 
-                    GDriveTask login = taskFactory.create("login", context, token);
+                    GDriveTask login = taskFactory.create("signin", context, token);
                     GDriveTask connect = taskFactory.create("connect", context, token);
                     GDriveTask clean = taskFactory.create("clean", context, token);
                     GDriveTask upload = taskFactory.create("upload", context, token);
@@ -84,7 +88,7 @@ public class GdriveManager implements CloudManager{
 
                 ExecutorService executor2= Executors.newCachedThreadPool();
                 GDriveTaskFactory taskFactory=new GDriveTaskFactory();
-                GDriveTask login=taskFactory.create("login", context,token);
+                GDriveTask login=taskFactory.create("signin", context,token);
                 GDriveTask connect=taskFactory.create("connect", context,token);
                 GDriveTask download=taskFactory.create("download", context,token);
 
@@ -112,5 +116,20 @@ public class GdriveManager implements CloudManager{
         executor.shutdown();
 
         return false;
+    }
+
+    private boolean silentSignIn(Token token,Context context) {
+        boolean result=false;
+
+        token.setGoogleSignInOptions( new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build());
+        try {
+            token.setGoogleSignInClient(GoogleSignIn.getClient((Activity)context, token.getGoogleSignInOptions()));
+            result=true;
+        }catch (NullPointerException nex){
+            result=false;
+        }
+        return result;
     }
 }

@@ -9,12 +9,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
-public class Login extends GDriveTask{
+public class SingIn extends GDriveTask{
 
     private GoogleSignInOptions googleSignInOptions;
     private GoogleSignInClient googleSignInClient;
 
-    public Login(Context context, Token token) {
+    public SingIn(Context context, Token token) {
         super(context, token);
     }
 

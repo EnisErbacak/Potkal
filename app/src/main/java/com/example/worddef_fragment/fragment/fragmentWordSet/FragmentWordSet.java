@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import com.example.worddef_fragment.R;
 import com.example.worddef_fragment.fragment.fragmentWordSet.editor.UiEdtrWrdSet;
 import com.example.worddef_fragment.fragment.fragmentWordSet.elements.btn.BtnMenuTop;
-import com.example.worddef_fragment.cloud_service.gDrive.activity.ActivityGDrive;
 
 public class FragmentWordSet extends Fragment
 {
@@ -47,7 +46,6 @@ public class FragmentWordSet extends Fragment
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ActivityGDrive.setpBar(view.findViewById(R.id.pBarWordSet));
         context=getContext();
 
         new UiEdtrWrdSet(context).updateScrn(ORDER_BY);

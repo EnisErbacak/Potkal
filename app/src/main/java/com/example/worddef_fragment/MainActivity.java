@@ -8,7 +8,6 @@ import android.widget.FrameLayout;
 
 import com.example.worddef_fragment.file.shared_preferences.SPEditor;
 import com.example.worddef_fragment.fragment.fragmentWordSet.FragmentWordSet;
-import com.example.worddef_fragment.cloud_service.gDrive.GClass;
 import com.example.worddef_fragment.misc.editText.Toaster;
 
 public class MainActivity extends FragmentActivity {
@@ -25,7 +24,6 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void setCondition() {
-        new GClass(MainActivity.this).silentLogin();
         new SPEditor().start(getApplicationContext());
     }
 
