@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import com.example.worddef_fragment.fragments.fragmentWordDef.dialog.dialog_fragments.CustomDialogFragment;
+import com.example.worddef_fragment.fragment.fragmentWordDef.dialog.dialog_fragments.CustomDialogFragment;
 
 public class TdkBtnLstner implements View.OnClickListener {
 

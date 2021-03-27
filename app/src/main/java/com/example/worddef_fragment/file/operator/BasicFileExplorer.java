@@ -1,7 +1,5 @@
 package com.example.worddef_fragment.file.operator;
 
-import com.example.worddef_fragment.file.operator.FileExplorer;
-
 import java.io.File;
 import java.util.ArrayList;
 
@@ -30,7 +28,7 @@ public class BasicFileExplorer implements FileExplorer {
         File[] files = directory.listFiles();
         if(files!=null) {
             for (int i = 0; i < files.length; i++) {
-                if (files[i].getName().equals(fileName)) {
+                if (files[i].getName().toLowerCase().equals(fileName.toLowerCase())) {
                     result= true;
                     break;
                 }

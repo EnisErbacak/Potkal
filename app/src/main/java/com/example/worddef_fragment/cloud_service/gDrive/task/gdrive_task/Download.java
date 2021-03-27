@@ -30,13 +30,14 @@ public class Download extends GDriveTask {
         checkDir(pathDwnld);
 
         try {
+            out = new FileOutputStream(new java.io.File(pathDwnld, "Potkal.zip"));
             FileList fileList=token.getDriveService().files().list().setSpaces("appDataFolder").execute();
             fileList.getFiles();
 
             for(File file: fileList.getFiles()) {
                 if(file.getName().equals("Potkal.zip")) {
                     System.out.println("POTKAL.ZIP FOUND!");
-                    out = new FileOutputStream(new java.io.File(pathDwnld, "Potkal.zip"));
+
                     token.getDriveService().files().get(file.getId()).executeMediaAndDownloadTo(out);
                     result= true;
                     break;

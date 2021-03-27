@@ -3,7 +3,6 @@ package com.example.worddef_fragment.cloud_service.gDrive.task.gdrive;
 import android.content.Context;
 import android.content.Intent;
 
-import com.example.worddef_fragment.file.operator2.FileOperator;
 import com.example.worddef_fragment.misc.editText.Toaster;
 import com.example.worddef_fragment.cloud_service.gDrive.task.task_super.CustomTask;
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;

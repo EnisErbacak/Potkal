@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.FrameLayout;
 
 import com.example.worddef_fragment.file.shared_preferences.SPEditor;
-import com.example.worddef_fragment.fragments.fragmentWordSet.FragmentWordSet;
+import com.example.worddef_fragment.fragment.fragmentWordSet.FragmentWordSet;
 import com.example.worddef_fragment.cloud_service.gDrive.GClass;
 import com.example.worddef_fragment.misc.editText.Toaster;
 
@@ -21,7 +21,6 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
         this.context=getApplicationContext();
         startFragment(savedInstanceState);
-
         setCondition();
     }
 
@@ -41,11 +40,8 @@ public class MainActivity extends FragmentActivity {
     @Override
     public void onBackPressed() {
         int count = getSupportFragmentManager().getBackStackEntryCount();
-        if (count == 0) {
-            endApp();
-        } else {
-            getSupportFragmentManager().popBackStack();
-        }
+        if (count == 0) endApp();
+        else getSupportFragmentManager().popBackStack();
     }
 
     private void endApp() {

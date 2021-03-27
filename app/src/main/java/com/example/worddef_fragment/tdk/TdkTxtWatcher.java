@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.worddef_fragment.fragments.fragmentWordDef.dialog.dialog_fragments.CustomDialogFragment;
+import com.example.worddef_fragment.fragment.fragmentWordDef.dialog.dialog_fragments.CustomDialogFragment;
 import com.example.worddef_fragment.cloud_service.gDrive.task.task_super.TaskRunner;
 
 public class TdkTxtWatcher implements TextWatcher {

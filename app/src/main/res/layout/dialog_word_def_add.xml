@@ -70,12 +70,12 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.example.worddef_fragment.fragments.fragmentWordDef.dialog.view.EdtTxtDialogDef
+                <com.example.worddef_fragment.fragment.fragmentWordDef.dialog.view.EdtTxtDialogDef
                     android:id="@+id/etDlgAddDef"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_dialog_custom_et"
-                    android:hint="Definition"></com.example.worddef_fragment.fragments.fragmentWordDef.dialog.view.EdtTxtDialogDef>
+                    android:hint="Definition"></com.example.worddef_fragment.fragment.fragmentWordDef.dialog.view.EdtTxtDialogDef>
 
                 <EditText
                     android:id="@+id/etDlgAddExmp"

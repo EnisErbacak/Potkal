@@ -17,7 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.worddef_fragment.R;
-import com.example.worddef_fragment.fragments.fragmentWordDef.dialog.dialog_fragments.CustomDialogFragment;
+import com.example.worddef_fragment.fragment.fragmentWordDef.dialog.dialog_fragments.CustomDialogFragment;
 
 import java.util.ArrayList;
 
