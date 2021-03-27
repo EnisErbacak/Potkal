@@ -45,7 +45,6 @@ public class BasicFileOperator implements FileOperator {
 
         FileWriter fileWriter=null;
         File file = new File(path);
-
         try {
             fileWriter = new FileWriter(file);
             fileWriter.write(content);
@@ -73,6 +72,11 @@ public class BasicFileOperator implements FileOperator {
             result= false;
         }
         return result;
+    }
+
+    @Override
+    public boolean createDir(String path) {
+        return new File(path).mkdir();
     }
 
     @Override

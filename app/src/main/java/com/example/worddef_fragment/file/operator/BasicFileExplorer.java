@@ -43,7 +43,6 @@ public class BasicFileExplorer implements FileExplorer {
         File file=new File(dir);
         if(!file.exists() && !file.isDirectory())
             return false;
-
         return result;
     }
 

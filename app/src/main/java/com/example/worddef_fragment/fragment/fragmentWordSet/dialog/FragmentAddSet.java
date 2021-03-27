@@ -105,8 +105,6 @@ public class FragmentAddSet extends AppCompatDialogFragment {
             if(!isEmpty(wordSetName)) {
                 //if (new WordSetEditor2(view.getContext()).createNewWordSet(wordSetName)) {
                 if(new FragmentOperatorFactory().create("wordset",getContext()).add(wordSetName, new JSONObject())) {
-
-
                     FragmentAddSet.this.dismiss();
                     new UiEdtrWrdSet(getContext()).updateScrn(FragmentWordSet.ORDER_BY);
                 }

@@ -42,8 +42,8 @@ public class WordSetOperator implements FragmentOperator {
     public boolean add(String name, JSONObject jObj) {
         boolean result=false;
         if(! fileManager.explore().checkDuplication(dirWordSet,name)) {
-            fileManager.operate().write(dirWordSet + File.separator+name, jObj.toString());
-            result=true;
+                fileManager.operate().write(dirWordSet + File.separator + name, jObj.toString());
+                result = true;
         }
         return result;
     }

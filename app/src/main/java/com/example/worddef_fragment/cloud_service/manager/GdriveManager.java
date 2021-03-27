@@ -17,6 +17,7 @@ import com.example.worddef_fragment.file.path_picker.PathPicker;
 import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
 import com.example.worddef_fragment.file.transporter.FileTransferFactory;
 import com.example.worddef_fragment.file.transporter.FileTransporter;
+import com.example.worddef_fragment.other.ScannerActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -68,7 +69,12 @@ public class GdriveManager implements CloudManager{
                                     new FileManager().operate().deleteDir(new PathPickerFactory().create("zip").get(context)); // --removeZip
                                 }
                     executor2.shutdown();
-                    pb.setAlpha(0);
+                    new ScannerActivity().scanForActivity(context).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            pb.setAlpha(0);
+                        }
+                    });
                 }
             }});
         executor.shutdown();
@@ -111,7 +117,12 @@ public class GdriveManager implements CloudManager{
 
                         }
                 executor2.shutdown();
-                pb.setAlpha(0);
+                new ScannerActivity().scanForActivity(context).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        pb.setAlpha(0);
+                    }
+                });
             }});
         executor.shutdown();
 

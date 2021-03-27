@@ -6,6 +6,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
+import com.example.worddef_fragment.file.operator.FileManager;
+import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
 import com.example.worddef_fragment.file.shared_preferences.SPEditor;
 import com.example.worddef_fragment.fragment.fragmentWordSet.FragmentWordSet;
 import com.example.worddef_fragment.misc.editText.Toaster;
@@ -25,6 +27,7 @@ public class MainActivity extends FragmentActivity {
 
     private void setCondition() {
         new SPEditor().start(getApplicationContext());
+        new FileManager().operate().createDir(new PathPickerFactory().create("wordset").get(context));
     }
 
     private void startFragment(Bundle savedInstanceState) {
