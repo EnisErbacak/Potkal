@@ -39,7 +39,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/bg_dialog_custom_et"
-                        android:hint="Word"
+                        android:hint="@string/word"
                         android:inputType="text"
                         android:textSize="24sp"
                         android:textStyle="bold"></EditText>
@@ -52,7 +52,7 @@
                         android:layout_marginLeft="3dp"
                         android:layout_weight="3"
                         android:background="@drawable/bg_dialog_custom_et"
-                        android:hint="Kind" />
+                        android:hint="@string/kind" />
                 </LinearLayout>
 
                 <EditText
@@ -60,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_dialog_custom_et"
-                    android:hint="lang"
+                    android:hint="@string/lang"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -70,19 +70,19 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.example.worddef_fragment.fragment.fragmentWordDef.dialog.view.EdtTxtDialogDef
+                <com.example.worddef_fragment.fragments.fragment_worddef.dialog.view.EdtTxtDialogDef
                     android:id="@+id/etDlgAddDef"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_dialog_custom_et"
-                    android:hint="Definition"></com.example.worddef_fragment.fragment.fragmentWordDef.dialog.view.EdtTxtDialogDef>
+                    android:hint="@string/definition"></com.example.worddef_fragment.fragments.fragment_worddef.dialog.view.EdtTxtDialogDef>
 
                 <EditText
                     android:id="@+id/etDlgAddExmp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_dialog_custom_et"
-                    android:hint="Example" />
+                    android:hint="@string/example" />
             </LinearLayout>
 
             <RelativeLayout
@@ -99,7 +99,7 @@
                     android:background="@drawable/bg_dialog_custom_btn"
                     android:clickable="false"
                     android:enabled="false"
-                    android:text="Display TDK"
+                    android:text="@string/tdk_results"
                     android:textColor="#000000" />
 
                 <ProgressBar
@@ -128,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bg_dialog_custom_btn"
-                    android:text="CANCEL" />
+                    android:text="@string/cancel" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -141,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bg_dialog_custom_btn"
-                    android:text="ADD" />
+                    android:text="@string/add" />
             </LinearLayout>
 
         </LinearLayout>

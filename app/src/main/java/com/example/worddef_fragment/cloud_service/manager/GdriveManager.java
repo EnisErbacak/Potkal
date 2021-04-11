@@ -2,11 +2,9 @@ package com.example.worddef_fragment.cloud_service.manager;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
-import android.view.View;
 import android.widget.ProgressBar;
 
+import com.example.worddef_fragment.R;
 import com.example.worddef_fragment.cloud_service.gDrive.task.gdrive_task.GDriveTask;
 import com.example.worddef_fragment.cloud_service.gDrive.task.gdrive_task.GDriveTaskFactory;
 import com.example.worddef_fragment.cloud_service.gDrive.task.gdrive_task.Token;
@@ -18,8 +16,8 @@ import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
 import com.example.worddef_fragment.file.transporter.FileTransferFactory;
 import com.example.worddef_fragment.file.transporter.FileTransporter;
 import com.example.worddef_fragment.other.ScannerActivity;
+import com.example.worddef_fragment.reaction.Reaction;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 import java.util.concurrent.ExecutorService;
@@ -67,6 +65,7 @@ public class GdriveManager implements CloudManager{
                                 if(upload.perform()) {
                                     System.out.println("FINISHHHHHHHH");
                                     new FileManager().operate().deleteDir(new PathPickerFactory().create("zip").get(context)); // --removeZip
+                                    new Reaction(context).showShort(context.getResources().getString(R.string.backed_up));
                                 }
                     executor2.shutdown();
                     new ScannerActivity().scanForActivity(context).runOnUiThread(new Runnable() {
@@ -114,7 +113,7 @@ public class GdriveManager implements CloudManager{
                             fileOperator.deleteDir(downloadPath);
 
                             System.out.println("FINISHHHHHHHH");
-
+                            new Reaction(context).showShort(context.getResources().getString(R.string.restored));
                         }
                 executor2.shutdown();
                 new ScannerActivity().scanForActivity(context).runOnUiThread(new Runnable() {

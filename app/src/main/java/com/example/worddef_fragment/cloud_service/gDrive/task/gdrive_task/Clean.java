@@ -21,7 +21,7 @@ public class Clean extends GDriveTask {
     }
 
     private Boolean clean() {
-        Boolean result=false;
+        boolean result=false;
 
         try {
             FileList fileList=token.getDriveService().files().list().setSpaces("appDataFolder").execute();

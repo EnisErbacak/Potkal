@@ -2,8 +2,8 @@ package com.example.worddef_fragment.cloud_service.gDrive.task.gdrive_task;
 
 import android.content.Context;
 
-import com.example.worddef_fragment.misc.editText.Toaster;
 import com.example.worddef_fragment.other.ScannerActivity;
+import com.example.worddef_fragment.reaction.Reaction;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
@@ -22,7 +22,7 @@ public class Connect extends GDriveTask {
     @Override
     public boolean perform() {
         boolean result=false;
-        //Toaster.showBckGrnd("CONNECTING TO GDRIVE...");
+        Reaction reaction=new Reaction(context);
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(new ScannerActivity().scanForActivity(context));
 
@@ -35,12 +35,12 @@ public class Connect extends GDriveTask {
             loggedIn=true;
         }
         catch (NullPointerException nullPointerException) {
-            Toaster.show(context, "SIGN IN FIRST PLEASE");
+            reaction.showShort( "SIGN IN FIRST PLEASE");
             loggedIn=false;
             result=false;
         }
         catch (Exception exception) {
-            Toaster.show(context,"SOMETHING WENT WRONG!");
+            reaction.showShort("SOMETHING WENT WRONG!");
             loggedIn=false;
             result=false;
         }

@@ -29,7 +29,7 @@ public class Zip implements FileTransporter{
             bos=new BufferedOutputStream(fos);
             zos = new ZipOutputStream(bos);
 
-            byte data[] = new byte[1024];
+            byte[] data = new byte[1024];
 
             for (int i = 0; i < files.length; i++) {
                 fi = new FileInputStream(files[i]);

@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/containerMainFragment"
+    android:id="@+id/clMainWordset"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#115387">
@@ -16,12 +16,12 @@
         android:alpha="0"
         android:indeterminate="true"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/panelMainScroll"
+        app:layout_constraintBottom_toTopOf="@+id/svMainWordset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.example.worddef_fragment.fragment.fragmentWordSet.elements.btn.BtnAddSet
+    <com.example.worddef_fragment.fragments.fragment_wordset.views.btn.BtnAddSet
         android:id="@+id/btnAddSet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.example.worddef_fragment.fragment.fragmentWordSet.elements.btn.BtnSrt
+    <com.example.worddef_fragment.fragments.fragment_wordset.views.btn.BtnSrt
         android:id="@+id/btnSrtWrdSet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,10 +47,11 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ScrollView
-        android:id="@+id/panelMainScroll"
+        android:id="@+id/svMainWordset"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="64dp"
+        android:alpha="1"
         android:background="#111F29"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,16 +68,16 @@
         </LinearLayout>
     </ScrollView>
 
-    <com.example.worddef_fragment.fragment.fragmentWordSet.elements.btn.BtnMenuTop
-        android:id="@+id/btnMenuTop"
+    <com.example.worddef_fragment.fragments.fragment_wordset.views.btn.BtnTopMenu
+        android:id="@+id/btnTopMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:alpha="1"
         android:clickable="true"
         android:contentDescription="@string/menu"
         android:focusable="true"
         android:requiresFadingEdge="none"
-        app:backgroundTint="#115387"
         app:borderWidth="0dp"
         app:elevation="0dp"
         app:fabSize="normal"
@@ -92,7 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:fontFamily="cursive"
-        android:text="@string/potkal2"
+        android:text="@string/potkal"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#F5F5F5"

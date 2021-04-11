@@ -98,7 +98,7 @@
                     android:background="@drawable/bg_dialog_custom_btn"
                     android:clickable="false"
                     android:enabled="false"
-                    android:text="DISPLAY TDK"
+                    android:text="@string/tdk_results"
                     android:textColor="#000000" />
 
                 <ProgressBar
@@ -126,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bg_dialog_custom_btn"
-                    android:text="CANCEL" />
+                    android:text="@string/cancel" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -139,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bg_dialog_custom_btn"
-                    android:text="CHANGE" />
+                    android:text="@string/change" />
             </LinearLayout>
 
         </LinearLayout>

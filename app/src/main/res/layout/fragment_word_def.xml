@@ -2,12 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/containerWordDef"
+    android:id="@+id/clMainWorddef"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#01182B">
 
-    <com.example.worddef_fragment.fragment.fragmentWordDef.elements.btn.BtnAddWordDef
+    <com.example.worddef_fragment.fragments.fragment_worddef.views.btn.BtnAddWorddef
         android:id="@+id/btnWordDefAddWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.example.worddef_fragment.fragment.fragmentWordDef.elements.btn.BtnOpt
+    <com.example.worddef_fragment.fragments.fragment_worddef.views.btn.BtnOpt
         android:id="@+id/btnWordDefOpt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnWordDefSrt"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.example.worddef_fragment.fragment.fragmentWordDef.elements.btn.BtnSrt
+    <com.example.worddef_fragment.fragments.fragment_worddef.views.btn.BtnSrt
         android:id="@+id/btnWordDefSrt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ScrollView
-        android:id="@+id/scrollPanelWordDef"
+        android:id="@+id/svMainWorddef"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="64dp"

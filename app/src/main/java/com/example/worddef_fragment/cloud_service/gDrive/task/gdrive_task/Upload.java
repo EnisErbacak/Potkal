@@ -3,7 +3,7 @@ package com.example.worddef_fragment.cloud_service.gDrive.task.gdrive_task;
 import android.content.Context;
 import android.content.Intent;
 import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
-import com.example.worddef_fragment.misc.editText.Toaster;
+import com.example.worddef_fragment.reaction.Reaction;
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
 import com.google.api.client.http.FileContent;
 import com.google.api.services.drive.model.File;
@@ -22,8 +22,9 @@ public class Upload extends GDriveTask {
     }
 
     private Boolean upload() {
-        Boolean result=false;
+        boolean result=false;
 
+        Reaction reaction=new Reaction(context);
         File fileMetaData = new File();
         fileMetaData.setName("Potkal.zip");
         fileMetaData.setParents(Collections.singletonList("appDataFolder"));
@@ -41,7 +42,6 @@ public class Upload extends GDriveTask {
             //Thread.sleep(3000);
 
             System.out.println("---GDRIVE: UPLOADED!");
-            Toaster.show(context,"BACKED UP!");
             result=true;
 
         } catch (UserRecoverableAuthIOException e) {
@@ -50,11 +50,11 @@ public class Upload extends GDriveTask {
             context.startActivity(intent);
             result=false;
         } catch (Exception e) {
-            Toaster.show(context, e.getMessage());
+            reaction.showShort(e.getMessage());
             result=false;
         }
         if (myFile == null) {
-            Toaster.show(context, "NULL GDRIVE FILE!");
+            reaction.showShort( "NULL GDRIVE FILE!");
             result=false;
             try {
                 throw new IOException("null result when requesting file creation");

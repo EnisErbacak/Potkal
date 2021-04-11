@@ -1,6 +1,5 @@
 package com.example.worddef_fragment.cloud_service.gDrive.task.gdrive_task;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 

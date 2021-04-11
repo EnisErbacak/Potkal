@@ -3,4 +3,21 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="col_black">#000000</color>
+
+    <color name="col_wordset">#C7E6FB</color>
+    <color name="col_wordset_bg">#202223</color>
+    <color name="col_wordset_btn_bg">#115387</color>
+    <color name="col_wordset_statusbar">#115387</color>
+
+    <color name="col_worddef">#C7E6FB</color>
+    <color name="col_worddef_bg">#394C73</color>
+    <color name="col_worddef_btn_bg">#111F29</color>
+    <color name="col_worddef_statusbar">#01182B</color>
+
+    <color name="col_settings_bg">#FFFFFF</color>
+    <color name="dialog_bg">#2F7CCD</color>
+
+
 </resources>

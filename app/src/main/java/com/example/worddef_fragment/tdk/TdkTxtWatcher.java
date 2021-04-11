@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.worddef_fragment.fragment.fragmentWordDef.dialog.dialog_fragments.CustomDialogFragment;
+import com.example.worddef_fragment.fragments.fragment_worddef.dialog.dialog_fragments.CustomDialogFragment;
 import com.example.worddef_fragment.cloud_service.gDrive.task.task_super.TaskRunner;
 
 public class TdkTxtWatcher implements TextWatcher {
@@ -94,8 +94,7 @@ public class TdkTxtWatcher implements TextWatcher {
         public void run() {
             try {
                 this.sleep(1500);
-                TaskTdkFetcher taskFtchWrdTdk = new TaskTdkFetcher(customDialogFragment, "Fetch Word From TDK", wrd, btnDsply,pbTdk, txtViewDef);
-                new TaskRunner().executeAsync(taskFtchWrdTdk);
+                new TdkManager(wrd, customDialogFragment).search();
                 System.out.println("1  DONE");
             } catch (InterruptedException e) {
                 System.out.println("1  Dead");
@@ -121,8 +120,7 @@ public class TdkTxtWatcher implements TextWatcher {
         public void run() {
             try {
                 this.sleep(1000);
-                TaskTdkFetcher taskFtchWrdTdk = new TaskTdkFetcher(customDialogFragment, "Fetch Word From TDK", wrd, btnDsply, pbTdk, txtViewDef);
-                new TaskRunner().executeAsync(taskFtchWrdTdk);
+                new TdkManager(wrd, customDialogFragment).search();
                 System.out.println("2   DONE");
             } catch (InterruptedException e) {
                 System.out.println(" 2  Dead");

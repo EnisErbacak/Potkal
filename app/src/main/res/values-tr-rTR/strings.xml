@@ -2,9 +2,9 @@
 <resources>
     <string name="app_name">WordDef_Fragment</string>
     <string name="menu">Menü</string>
-    <string name="select_text_size">Yazı Boyutu Seçin</string>
-    <string name="select_language">Dil Seçin</string>
-    <string name="select_theme">Tema Seçin</string>
+    <string name="text_size">Yazı Boyutu</string>
+    <string name="language">Dil</string>
+    <string name="theme">Tema</string>
     <string name="backed_up">Yedeklendi!</string>
     <string name="restored">Geri Yüklendi!</string>
     <string name="added">Eklendi!</string>
@@ -22,4 +22,28 @@
     <string name="please_sig_in_first">Lütfen Önce Giriş Yapın!</string>
     <string name="no_result">Sonuç Bulunamadı!</string>
     <string name="no_internet_connection">İnternet Bağlantısı Yok!</string>
+    <string name="add">Ekle</string>
+    <string name="cancel">İptal</string>
+    <string name="change">Değiştir</string>
+    <string name="tdk_results">TDK Sonuçları</string>
+    <string name="word">Kelime</string>
+    <string name="kind">Tür</string>
+    <string name="lang">Dil (Köken)</string>
+    <string name="definition">Anlam</string>
+    <string name="example">Örnek</string>
+    <string name="backup">Yedekle</string>
+    <string name="restore">Geri Yükle</string>
+    <string name="settings">Ayarlar</string>
+    <string name="set_name">Kelime Grubu İsmi</string>
+    <string name="sort_by_created_date">Tarihe Göre Sırala</string>
+    <string name="sort_by_alphabetical">Alfabetik Sırala</string>
+    <string name="set">Kelime Grubu</string>
+    <string name="appearance">Görünüm</string>
+    <string name="word_count">Kelime Sayısı</string>
+    <string name="color">Renk</string>
+    <string name="background">Arka Plan</string>
+    <string name="button">Düğme</string>
+    <string name="text">Metin</string>
+    <string name="status_bar">Durum Çubuğu</string>
+    <string name="dialog">Diyalog</string>
 </resources>

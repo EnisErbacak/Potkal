@@ -23,7 +23,7 @@ public class Download extends GDriveTask {
     }
 
     private Boolean downloadZip() {
-        Boolean result=false;
+        boolean result=false;
 
         String pathDwnld=context.getFilesDir().getPath()+ java.io.File.separator+"download";
         OutputStream out = null;
