@@ -35,6 +35,10 @@ public class SPEditor {
     public static final String COL_SETTINGS_BG="col_settings_bg";
     public static final String COL_SETTINGS_TXT="col_settings_txt";
 
+    public static final String DUPLICATION_CHCK="duplication_check";
+    public static final String DUPLICATION_CHCK_CURRENT="current";
+    public static final String DUPLICATION_CHCK_ALL="all";
+
     private void initialize(Context context) {
         hm=new HashMap<>();
         hm.put(SET_TXT_SIZE,"35");
@@ -61,6 +65,7 @@ public class SPEditor {
 
         hm.put(COL_SETTINGS_BG,String.valueOf(context.getResources().getColor(R.color.col_settings_bg)));
         hm.put(COL_SETTINGS_TXT,String.valueOf(context.getResources().getColor(R.color.col_black)));
+        hm.put(DUPLICATION_CHCK, "current");
     }
 
     public void setValues(Context context, String key, String value) {

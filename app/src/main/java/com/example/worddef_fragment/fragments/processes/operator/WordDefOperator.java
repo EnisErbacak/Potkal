@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.worddef_fragment.file.operator.FileManager;
 import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
+import com.example.worddef_fragment.file.shared_preferences.SPEditor;
 import com.example.worddef_fragment.fragments.fragment_worddef.FragmentWordDef;
 import com.example.worddef_fragment.fragments.processes.explorer.FragmentExplorerFactory;
 
@@ -54,24 +55,36 @@ public class WordDefOperator implements FragmentOperator {
     @Override
     public boolean add(String name, JSONObject jObj) {
         boolean result=false;
+        String checkType=new SPEditor().getValue(context, SPEditor.DUPLICATION_CHCK);
         String dir2Srch=dirWordSet+File.separator+setName;
 
-        if(new FragmentExplorerFactory().create("worddef").checkDuplication(dir2Srch, name)) {
-            try {
-                jObjMain.put(name, jObj);
-                update(setName, jObjMain);
-                result = true;
-            } catch (JSONException je) {
-                je.printStackTrace();
-                result = false;
-            }
-        }
-        else{
-            // This word is already exists.
-            System.out.println("**********THIS WORD IS ALREADY EXISTS");
-            result=false;
-        }
+        switch (checkType) {
+            case SPEditor.DUPLICATION_CHCK_CURRENT:
+                if(new FragmentExplorerFactory().create("worddef").checkDuplication(dir2Srch, name)) {
+                    try {
+                        jObjMain.put(name, jObj);
+                        update(setName, jObjMain);
+                        result = true;
+                    } catch (JSONException je) {
+                        je.printStackTrace();
+                        result = false;
+                    }
+                }
 
+                break;
+            case SPEditor.DUPLICATION_CHCK_ALL:
+                if(new FragmentExplorerFactory().createImproved("worddef").checkDuplicationForAll(context,dir2Srch, name)) {
+                    try {
+                        jObjMain.put(name, jObj);
+                        update(setName, jObjMain);
+                        result = true;
+                    } catch (JSONException je) {
+                        je.printStackTrace();
+                        result = false;
+                    }
+                }
+                break;
+        }
         return result;
     }
 

@@ -10,6 +10,7 @@ import com.example.worddef_fragment.fragments.fragment_settings.element.containe
 import com.example.worddef_fragment.fragments.fragment_settings.element.containers.ClContainer;
 import com.example.worddef_fragment.fragments.fragment_settings.sections.appearance.SpinnerAppearance;
 import com.example.worddef_fragment.fragments.fragment_settings.sections.lang.SpinnerLang;
+import com.example.worddef_fragment.fragments.fragment_settings.sections.other.SpinnerOther;
 import com.example.worddef_fragment.fragments.fragment_settings.sections.txt_size.SpnrTxtSize;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class Operator {
     ArrayList<ConstraintLayout> clAppearanceList;
     ArrayList<ConstraintLayout> llLangList;
     ArrayList<ConstraintLayout> clColorList;
+    ArrayList<ConstraintLayout> otherList;
 
     Context context;
 
@@ -31,6 +33,7 @@ public class Operator {
         clAppearanceList =new ArrayList<>();
         llLangList=new ArrayList<>();
         clColorList=new ArrayList<>();
+        otherList=new ArrayList<>();
 
         createContent();
     }
@@ -80,13 +83,13 @@ public class Operator {
         clColorList.add(new ClColor(context,str_settings+" "+str_bg, SPEditor.COL_SETTINGS_BG)); // SETTINGS BG
         clColorList.add(new ClColor(context,str_settings+" "+str_txt, SPEditor.COL_SETTINGS_TXT)); // SETTINGS BG
 
+        otherList.add(new ClContainer(context, context.getResources().getString(R.string.duplication_check), new SpinnerOther(context, SPEditor.DUPLICATION_CHCK)));
+
 
         mainList.put(context.getResources().getString(R.string.color), clColorList);
-
         mainList.put(context.getResources().getString(R.string.language), llLangList);
-
-
         mainList.put(context.getResources().getString(R.string.appearance), clAppearanceList);
+        mainList.put(context.getResources().getString(R.string.other), otherList);
     }
 
     public HashMap<String, ArrayList<ConstraintLayout>> getMainList() {

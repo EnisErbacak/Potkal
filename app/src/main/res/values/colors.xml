@@ -19,5 +19,7 @@
     <color name="col_settings_bg">#FFFFFF</color>
     <color name="dialog_bg">#2F7CCD</color>
 
+    <color name="choice_tint">#2196F3</color>
+
 
 </resources>

@@ -63,11 +63,15 @@ public class TvTdkDef extends androidx.appcompat.widget.AppCompatTextView {
             System.out.println("Exmp: "+ propContainerLl.getExmp());
             System.out.println("----------------");
 
+            customDialogFragment.removeEtWrdTxtWtcher();
+
             customDialogFragment.getEtWrd().setText(mainContainerLl.getStrWrd());
             customDialogFragment.getEtExmp().setText(propContainerLl.getExmp());
             customDialogFragment.getEtLang().setText(mainContainerLl.getLang());
             customDialogFragment.getEtKind().setText(propContainerLl.getKind());
             customDialogFragment.getEtDef().setText(propContainerLl.getDef());
+
+            customDialogFragment.reAttachEtWrdListener();
             fragmentTdk.dismiss();
 
         }

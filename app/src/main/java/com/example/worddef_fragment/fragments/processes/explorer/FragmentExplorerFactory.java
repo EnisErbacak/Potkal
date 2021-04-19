@@ -15,4 +15,17 @@ public class FragmentExplorerFactory {
         }
         return  result;
     }
+
+    public ImprovedWorddefExplorer createImproved(String type) {
+        ImprovedWorddefExplorer result;
+
+        switch (type.toLowerCase()) {
+            case "worddef":
+                result = new WordDefExplorer();
+                break;
+            default:
+                result = null;
+        }
+        return result;
+    }
 }

@@ -24,4 +24,8 @@ public interface CustomDialogFragment {
 
     Word getWord();
     void setWord(Word word);
+
+    void removeEtWrdTxtWtcher();
+    void reAttachEtWrdListener();
+
 }

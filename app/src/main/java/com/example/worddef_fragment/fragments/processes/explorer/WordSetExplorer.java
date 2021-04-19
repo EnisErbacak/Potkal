@@ -12,11 +12,6 @@ public class WordSetExplorer implements FragmentExplorer {
     private Context context;
     private String dirWordSet;
 
-    public WordSetExplorer(Context context) {
-        this.context = context;
-        this.dirWordSet=new PathPickerFactory().create("wordset").get(context);
-    }
-
     public WordSetExplorer() {
         fileManager=new FileManager();
     }

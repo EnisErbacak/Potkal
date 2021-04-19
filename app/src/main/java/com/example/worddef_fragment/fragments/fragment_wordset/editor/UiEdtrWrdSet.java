@@ -54,7 +54,7 @@ public class UiEdtrWrdSet {
         ArrayList<String> fileNames=new FragmentExplorerFactory().create("wordset").getNames(new PathPickerFactory().create("wordset").get(context));
 
         for(int i=(fileNames.size()-1);i>=0;i--) {
-            llWrdSet.addView(new ContainerWrdset(context,fileNames.get(i)));
+            llWrdSet.addView(new ContainerWrdset(context,fileNames.get(i),true));
         }
         FragmentWordSet.ORDER_BY=BY_CRTD_DSC;
     }
@@ -65,7 +65,7 @@ public class UiEdtrWrdSet {
         ArrayList<String> fileNames=new FragmentExplorerFactory().create("wordset").getNames(new PathPickerFactory().create("wordset").get(context));
 
         for(int i=0;i<fileNames.size();i++) {
-            llWrdSet.addView(new ContainerWrdset(context,fileNames.get(i)));
+            llWrdSet.addView(new ContainerWrdset(context,fileNames.get(i),true));
         }
         FragmentWordSet.ORDER_BY=BY_CRTD_ASC;
     }
@@ -82,7 +82,7 @@ public class UiEdtrWrdSet {
         LinearLayout llWrdSet=scanForActivity(context).findViewById(R.id.pnlWrdSetMain);
         llWrdSet.removeAllViews();
         for(int i=0;i<list.size();i++) {
-            llWrdSet.addView(new ContainerWrdset(context,list.get(i)));
+            llWrdSet.addView(new ContainerWrdset(context,list.get(i),true));
         }
         FragmentWordSet.ORDER_BY=BY_ALPH_ASC;
     }
@@ -99,7 +99,7 @@ public class UiEdtrWrdSet {
         LinearLayout llWrdSet=scanForActivity(context).findViewById(R.id.pnlWrdSetMain);
         llWrdSet.removeAllViews();
         for(int i=(list.size()-1);i>=0;i--) {
-            llWrdSet.addView(new ContainerWrdset(context,list.get(i)));
+            llWrdSet.addView(new ContainerWrdset(context,list.get(i),true));
         }
         FragmentWordSet.ORDER_BY= BY_ALPH_DSC;
     }

@@ -1,6 +1,7 @@
 package com.example.worddef_fragment.fragments.fragment_wordset.views.container;
 
 import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -9,9 +10,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.worddef_fragment.fragments.fragment_wordset.views.txt_view.SuperTvRght;
 
 public class ContainerInnerRght extends LinearLayout {
-    private SuperTvRght[] subViews;
+    private View[] subViews;
 
-    public ContainerInnerRght(Context context, SuperTvRght[] subViews) {
+    public ContainerInnerRght(Context context, View[] subViews) {
         super(context);
         this.subViews=subViews;
         onCreate();
@@ -28,13 +29,13 @@ public class ContainerInnerRght extends LinearLayout {
 
     }
 
-    private void addViews(SuperTvRght[] subViews) {
+    private void addViews(View[] subViews) {
         for(int i=0;i<subViews.length;i++) {
             addView(subViews[i]);
         }
     }
 
-    public SuperTvRght[] getSubViews() {
+    public View[] getSubViews() {
         return subViews;
     }
 }

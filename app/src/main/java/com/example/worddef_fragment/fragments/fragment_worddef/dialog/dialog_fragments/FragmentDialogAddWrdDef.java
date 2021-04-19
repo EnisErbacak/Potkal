@@ -47,7 +47,7 @@ public class FragmentDialogAddWrdDef extends AppCompatDialogFragment implements 
 
     private ArrayList<TdkWord> tdkWordList;
 
-    private ArrayList<String> defList;
+    private TdkTxtWatcher etWrdTxtWtchr;
 
     private Word word; // Object that holds selected word's features.
 
@@ -106,7 +106,8 @@ public class FragmentDialogAddWrdDef extends AppCompatDialogFragment implements 
         btnCncl.setOnClickListener(new BtnCnclWrdDefLstenr(this));
         btnAddWrdDef.setOnClickListener(addWrdDefLstnr);
 
-        etDlgAddWrdStr.addTextChangedListener(new TdkTxtWatcher(FragmentDialogAddWrdDef.this, btnDsplyTdk, pbTdk, etDlgAddDef));
+        etWrdTxtWtchr=new TdkTxtWatcher(FragmentDialogAddWrdDef.this, btnDsplyTdk, pbTdk, etDlgAddDef);
+        etDlgAddWrdStr.addTextChangedListener(etWrdTxtWtchr);
 
         setBckGrnd();
     }
@@ -171,6 +172,16 @@ public class FragmentDialogAddWrdDef extends AppCompatDialogFragment implements 
         return pbTdk;
     }
 
+    public void removeEtWrdTxtWtcher() {
+        System.out.println("--Txt Watcher Removed!");
+        etDlgAddWrdStr.removeTextChangedListener(etWrdTxtWtchr);
+    }
+
+    public void reAttachEtWrdListener() {
+        System.out.println("--Txt Watcher Reattached!");
+        etDlgAddWrdStr.addTextChangedListener(etWrdTxtWtchr);
+    }
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private class BtnCnclWrdDefLstenr implements View.OnClickListener {
@@ -216,7 +227,6 @@ public class FragmentDialogAddWrdDef extends AppCompatDialogFragment implements 
                 if(exmpStr!=null) getWord().setExmp(exmpStr);
                 if(kindStr!=null) getWord().setKind(kindStr);
                 if(langStr!=null) getWord().setLang(langStr);
-                //getWord().setExmp();
 
                 new FragmentOperatorFactory().create("worddef",getContext()).add(word.getWrd(), new WordOperator().convert2Json(getWord()));
 

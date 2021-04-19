@@ -155,6 +155,16 @@ public class FragmentDialogChngWrdDef extends AppCompatDialogFragment implements
     }
 
     @Override
+    public void removeEtWrdTxtWtcher() {
+
+    }
+
+    @Override
+    public void reAttachEtWrdListener() {
+
+    }
+
+    @Override
     public EditText getEtWrd() {
     return etDlgChngWrd;
     }

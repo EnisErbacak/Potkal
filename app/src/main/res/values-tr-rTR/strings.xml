@@ -46,4 +46,13 @@
     <string name="text">Metin</string>
     <string name="status_bar">Durum Çubuğu</string>
     <string name="dialog">Diyalog</string>
+    <string name="select_set">Testteki Kelime Gruplarını Seçin</string>
+    <string name="create">Oluştur</string>
+    <string name="start_test">Teste Başla</string>
+    <string name="correct">Doğru</string>
+    <string name="incorrect">Yanlış</string>
+    <string name="duplication_check">Aynı Kelime Kontrolü</string>
+    <string name="only_on_current_wordset">Sadece Geçerli Kelime Grubunda</string>
+    <string name="on_all_wordset">Tüm Kelime Gruplarında</string>
+    <string name="other">Diğer</string>
 </resources>

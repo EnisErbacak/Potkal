@@ -3,6 +3,7 @@ package com.example.worddef_fragment.fragments.fragment_wordset.views.container;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.view.View;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
@@ -43,10 +44,12 @@ public class ContainerWrdset extends ConstraintLayout {
     private ContainerInnerLft containerInnerLft;
     private String setName;
     private int countWord;
+    private boolean attachListener;
 
-    public ContainerWrdset(final Context context, final String setName) {
+    public ContainerWrdset(final Context context, final String setName, boolean attachListener) {
         super(context);
         this.setName=setName;
+        this.attachListener=attachListener;
         onCreate(context);
     }
 
@@ -55,9 +58,9 @@ public class ContainerWrdset extends ConstraintLayout {
         COL_BG= Integer.parseInt(new SPEditor().getValue(context, SPEditor.COL_WORDSET));
 
         this.constraintSet=new ConstraintSet();
-        txtViewWrdSet=new TvWordsetLeft(getContext(),setName);
+        txtViewWrdSet=new TvWordsetLeft(getContext(),setName, attachListener);
 
-        containerInnerLft =new ContainerInnerLft(getContext(),txtViewWrdSet);
+        containerInnerLft =new ContainerInnerLft(getContext(),new View[] {txtViewWrdSet});
         countWord= new FragmentExplorerFactory().create("worddef").getCount(new PathPickerFactory().create("wordset").get(getContext())+ File.separator +setName );
         containerInnerRght =new ContainerInnerRght(getContext(),new SuperTvRght[]{new TvWordCount(getContext(),countWord)});
         setStyle();

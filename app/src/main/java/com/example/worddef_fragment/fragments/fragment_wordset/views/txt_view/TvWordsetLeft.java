@@ -16,6 +16,7 @@ import com.example.worddef_fragment.fragments.fragment_worddef.FragmentWordDef;
 
 public class TvWordsetLeft extends androidx.appcompat.widget.AppCompatTextView {
     private String setName;
+    private boolean attachListener;
 
     private final int COL_TXT = Color.parseColor("#111F29");
     //private final int SIZE_TXT=pix2Dip(10);
@@ -24,10 +25,11 @@ public class TvWordsetLeft extends androidx.appcompat.widget.AppCompatTextView {
     private Context context;
 
 
-    public TvWordsetLeft(Context context, String setName) {
+    public TvWordsetLeft(Context context, String setName, boolean attachListener) {
         super(context);
         this.setName = setName;
         this.context = context;
+        this.attachListener=attachListener;
         onCreate();
     }
 
@@ -48,8 +50,11 @@ public class TvWordsetLeft extends androidx.appcompat.widget.AppCompatTextView {
 
     //SETS BACKGROUND THINGS
     void setConditions(View view) {
-        view.setOnClickListener(new TxtViewWrdSetLngClckLstnr());
-        setOnLongClickListener(new TxtViewWrdSetLngLstnr());
+        if (attachListener) {
+            view.setOnClickListener(new TxtViewWrdSetLngClckLstnr());
+            setOnLongClickListener(new TxtViewWrdSetLngLstnr());
+        }
+
     }
 
     public String getWordsetName() {
