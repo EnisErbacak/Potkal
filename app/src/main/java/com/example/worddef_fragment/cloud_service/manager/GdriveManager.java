@@ -15,6 +15,8 @@ import com.example.worddef_fragment.file.path_picker.PathPicker;
 import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
 import com.example.worddef_fragment.file.transporter.FileTransferFactory;
 import com.example.worddef_fragment.file.transporter.FileTransporter;
+import com.example.worddef_fragment.fragments.fragment_wordset.FragmentWordSet;
+import com.example.worddef_fragment.fragments.fragment_wordset.editor.UiEdtrWrdSet;
 import com.example.worddef_fragment.other.ScannerActivity;
 import com.example.worddef_fragment.reaction.Reaction;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -120,6 +122,7 @@ public class GdriveManager implements CloudManager{
                     @Override
                     public void run() {
                         pb.setAlpha(0);
+                        new UiEdtrWrdSet(context).updateScrn(FragmentWordSet.ORDER_BY);
                     }
                 });
             }});

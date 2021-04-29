@@ -37,10 +37,16 @@
     <string name="text">Text</string>
     <string name="status_bar">Status Bar</string>
     <string name="dialog">Dialog</string>
+    <string name="sign_in_first">Please Sign In First</string>
+    <string name="now_backup_or_restore">You Can Backup or Restore Now!</string>
 
     <string name="set_name">Set Name</string>
     <string name="set">Set</string>
     <string name="word_count">Word Count</string>
+    <string name="set_exists">This Set Already Exists</string>
+    <string name="word_exists">This Word Already Exists</string>
+    <string name="word_exists_in">This Word Already Exists in</string>
+
 
     <string name="sort_by_created_date">Sort By Created Date</string>
     <string name="sort_by_alphabetical">Sort By Alphabetically</string>
@@ -55,14 +61,16 @@
         <string name="definition">Definition</string>
         <string name="example">Example</string>
 
-
-
-    <string name="select_set">Select Sets for Test</string>
     <string name="create">Create</string>
+    <string name="select_set">Select Sets for Test</string>
     <string name="start_test">Start Test</string>
     <string name="correct">Correct</string>
     <string name="incorrect">Incorrect</string>
-
-
+    <string name="create_test">Create Test</string>
+    <string name="choose_question_choice">Choose Question Choice Type</string>
+    <string name="pls_choose_set">Please Select Set Before Start</string>
+    <string name="pls_choose_safe_set"> Selected Set Contains Less than 5 Word-Definitinon Pair</string>
+    <string name="word_definition">Word - Definition</string>
+    <string name="definition_word">Definition - Word</string>
 
 </resources>

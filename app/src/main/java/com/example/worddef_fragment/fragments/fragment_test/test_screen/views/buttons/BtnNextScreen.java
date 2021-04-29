@@ -1,9 +1,8 @@
-package com.example.worddef_fragment.fragments.fragment_test.views;
+package com.example.worddef_fragment.fragments.fragment_test.test_screen.views.buttons;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

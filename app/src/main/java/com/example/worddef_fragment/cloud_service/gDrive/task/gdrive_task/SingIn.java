@@ -3,7 +3,9 @@ package com.example.worddef_fragment.cloud_service.gDrive.task.gdrive_task;
 import android.content.Context;
 import android.content.Intent;
 
+import com.example.worddef_fragment.R;
 import com.example.worddef_fragment.other.ScannerActivity;
+import com.example.worddef_fragment.reaction.Reaction;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -33,6 +35,7 @@ public class SingIn extends GDriveTask{
         token.setGoogleSignInOptions(googleSignInOptions);
 
         System.out.println("--------LOGGED IN");
+        new Reaction(context).showShort(context.getResources().getString(R.string.now_backup_or_restore));
 
         return  true;
     }

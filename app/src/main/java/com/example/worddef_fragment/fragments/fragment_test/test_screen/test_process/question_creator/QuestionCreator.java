@@ -1,4 +1,4 @@
-package com.example.worddef_fragment.fragments.fragment_test.question_creator;
+package com.example.worddef_fragment.fragments.fragment_test.test_screen.test_process.question_creator;
 
 import android.content.Context;
 
@@ -13,30 +13,50 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class QuestionCreator {
-    ArrayList<String> wordList, defList;
-    ArrayList<Integer> orderList;
+    ArrayList<String> qList, choiceList;
+    //ArrayList<Integer> orderList;
     Context context;
 
-    public QuestionCreator(Context context) {
+    public static final int WORD_IS_QUESTION=0;
+    public static final int DEFINITION_IS_QUESTION=1;
+
+    private int questionChoiceType;
+
+    public QuestionCreator(Context context, int questionChoiceType) {
         this.context = context;
-        wordList=new ArrayList<>();
-        defList=new ArrayList<>();
-        orderList=new ArrayList<>();
+        qList =new ArrayList<>();
+        choiceList =new ArrayList<>();
+      //  orderList=new ArrayList<>();
+        this.questionChoiceType=questionChoiceType;
     }
 
     public TestPool createTestPool(ArrayList<String> setNameList) {
         TestPool testPool =new TestPool();
         createPool(setNameList);
-        testPool.setDefList(defList);
-        testPool.setOrderList(orderList);
-        testPool.setWordList(wordList);
+
+        testPool.setChoiceList(choiceList);
+        //testPool.setOrderList(orderList);
+        testPool.setqList(qList);
         return testPool;
     }
 
-    private ArrayList<Integer> createPool(ArrayList<String> setNameList) {
+    private void setQuestionChoicePair(String key, String value) {
+        switch (questionChoiceType) {
+            case WORD_IS_QUESTION:
+                    qList.add(key);
+                    choiceList.add(value);
+                break;
+
+            case DEFINITION_IS_QUESTION:
+                qList.add(value);
+                choiceList.add(key);
+                break;
+        }
+    }
+
+    private void createPool(ArrayList<String> setNameList) {
         ArrayList<JSONObject> jObjList=getPairsJ(setNameList);
 
-        try {
             int order=0;
             for(int i=0;i<jObjList.size();i++) {
                 JSONObject jTemp=jObjList.get(i);
@@ -44,17 +64,16 @@ public class QuestionCreator {
                 Iterator<String> keys=jObjList.get(i).keys();
                 while (keys.hasNext()) {
                     String key=keys.next();
-
-                    wordList.add(key);
-                    defList.add(jTemp.getJSONObject(key).getString("def"));
-                    orderList.add(order);
+                    try {
+                    setQuestionChoicePair(key, jTemp.getJSONObject(key).getString("def"));
                     order++;
-                }
+                }catch (JSONException jsonException) {
+                        jsonException.printStackTrace();
+                        continue;
+                    }
             }
-        } catch (JSONException jsonException) {
-            jsonException.printStackTrace();
+            System.out.println("asdfasdfa");
         }
-        return orderList;
     }
 
     private ArrayList<JSONObject> getPairsJ(ArrayList<String> setNameList) {

@@ -1,11 +1,13 @@
-package com.example.worddef_fragment.fragments.fragment_test;
+package com.example.worddef_fragment.fragments.fragment_test.test_screen.test_process;
 
 import android.content.Context;
+import android.view.View;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.worddef_fragment.fragments.fragment_test.question_creator.QuestionCreator;
-import com.example.worddef_fragment.fragments.fragment_test.question_creator.TestPool;
+import com.example.worddef_fragment.R;
+import com.example.worddef_fragment.fragments.fragment_test.test_screen.FragmentTest;
+import com.example.worddef_fragment.fragments.fragment_test.test_screen.test_process.question_creator.TestPool;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,14 +19,15 @@ public class TestManager {
     private Context context;
     private TestPool testPool;
     private ConstraintLayout clTestMain;
-    private  FragmentTest fragmentTest;
+    private FragmentTest fragmentTest;
 
-    public TestManager(Context context, ArrayList<String> setNameList, ConstraintLayout clTestMain, FragmentTest fragmentTest) {
+    public TestManager(Context context, ArrayList<String> setNameList, TestPool testPool, ConstraintLayout clTestMain, FragmentTest fragmentTest) {
         this.context = context;
         this.clTestMain=clTestMain;
         testScreenList=new ArrayList<>();
-        testPool=new QuestionCreator(context).createTestPool(setNameList);
-        wordList=testPool.getWordList();
+        this.testPool=testPool;
+        //testPool=new QuestionCreator(context).createTestPool(setNameList);
+        wordList=testPool.getqList();
         this.fragmentTest=fragmentTest;
     }
 
@@ -43,9 +46,12 @@ public class TestManager {
     public void nextScreen() {
         if(crntScrnNo<=testScreenList.size()-2) {
             testScreenList.get(crntScrnNo+1).show();
+            if(crntScrnNo+1 ==testScreenList.size()-1) {
+                fragmentTest.getView().findViewById(R.id.btnTestFinish).setEnabled(true);
+                fragmentTest.getView().findViewById(R.id.btnTestFinish).setVisibility(View.VISIBLE);
+            }
             crntScrnNo++;
         }
-
     }
 
     public void prevScreen() {

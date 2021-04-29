@@ -1,4 +1,4 @@
-package com.example.worddef_fragment.fragments.fragment_test.views;
+package com.example.worddef_fragment.fragments.fragment_test.first_screen.views;
 
 import android.content.Context;
 import android.view.ViewGroup;

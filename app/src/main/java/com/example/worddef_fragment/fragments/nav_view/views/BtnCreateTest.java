@@ -9,8 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.worddef_fragment.R;
-import com.example.worddef_fragment.fragments.fragment_test.FragmentTest;
-import com.example.worddef_fragment.fragments.fragment_test.FragmentTestFirst;
+import com.example.worddef_fragment.fragments.fragment_test.first_screen.FragmentTestFirst;
 
 import java.util.ArrayList;
 

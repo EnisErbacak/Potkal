@@ -2,6 +2,7 @@ package com.example.worddef_fragment.cloud_service.gDrive.task.gdrive_task;
 
 import android.content.Context;
 
+import com.example.worddef_fragment.R;
 import com.example.worddef_fragment.other.ScannerActivity;
 import com.example.worddef_fragment.reaction.Reaction;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -35,7 +36,7 @@ public class Connect extends GDriveTask {
             loggedIn=true;
         }
         catch (NullPointerException nullPointerException) {
-            reaction.showShort( "SIGN IN FIRST PLEASE");
+            reaction.showShort( context.getResources().getString(R.string.sign_in_first));
             loggedIn=false;
             result=false;
         }

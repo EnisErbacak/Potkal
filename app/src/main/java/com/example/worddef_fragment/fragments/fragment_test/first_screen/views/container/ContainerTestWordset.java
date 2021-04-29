@@ -1,4 +1,4 @@
-package com.example.worddef_fragment.fragments.fragment_test.views;
+package com.example.worddef_fragment.fragments.fragment_test.first_screen.views.container;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -11,9 +11,10 @@ import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
 import com.example.worddef_fragment.file.shared_preferences.SPEditor;
+import com.example.worddef_fragment.fragments.fragment_test.first_screen.views.ChckBoxTest;
+import com.example.worddef_fragment.fragments.fragment_test.first_screen.views.TvTestFirstSetName;
 import com.example.worddef_fragment.fragments.fragment_wordset.views.container.ContainerInnerLft;
 import com.example.worddef_fragment.fragments.fragment_wordset.views.container.ContainerInnerRght;
-import com.example.worddef_fragment.fragments.fragment_wordset.views.txt_view.SuperTvRght;
 import com.example.worddef_fragment.fragments.fragment_wordset.views.txt_view.TvWordCount;
 import com.example.worddef_fragment.fragments.fragment_wordset.views.txt_view.TvWordsetLeft;
 import com.example.worddef_fragment.fragments.processes.explorer.FragmentExplorerFactory;
@@ -42,7 +43,7 @@ public class ContainerTestWordset extends ConstraintLayout {
     private LayoutParams lp;
 
     private ChckBoxTest checkBox;
-    private TvWordsetLeft txtViewWrdSet;
+    private TvTestFirstSetName txtViewWrdSet;
     private ContainerInnerRght containerInnerRght;
     private ContainerInnerLft containerInnerLft;
     private String setName;
@@ -59,7 +60,7 @@ public class ContainerTestWordset extends ConstraintLayout {
         COL_BG = Integer.parseInt(new SPEditor().getValue(context, SPEditor.COL_WORDSET));
 
         this.constraintSet = new ConstraintSet();
-        txtViewWrdSet = new TvWordsetLeft(getContext(), setName, false);
+        txtViewWrdSet = new TvTestFirstSetName(getContext(), setName);
 
         checkBox=new ChckBoxTest(context);
         containerInnerLft = new ContainerInnerLft(getContext(), new View[] {checkBox, txtViewWrdSet});
@@ -73,11 +74,11 @@ public class ContainerTestWordset extends ConstraintLayout {
     public void setStyle() {
         lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 
-        setLytPrms(lp);
-        setMargin(lp);
-        setPad();
+        setLayoutParams(lp);
+        //setMargin(lp);
+        //setPad();
 
-        setBgShape(getGradientDrawable(COL_BG, VAL_CRNR_RDS));
+        //setBgShape(getGradientDrawable(COL_BG, VAL_CRNR_RDS));
         locateSubPanels();
     }
 
@@ -90,7 +91,7 @@ public class ContainerTestWordset extends ConstraintLayout {
         constraintSet.connect(containerInnerLft.getId(), ConstraintSet.BOTTOM, this.getId(), ConstraintSet.BOTTOM);
         constraintSet.connect(containerInnerLft.getId(), ConstraintSet.TOP, this.getId(), ConstraintSet.TOP);
 
-        constraintSet.connect(containerInnerRght.getId(), ConstraintSet.END, this.getId(), ConstraintSet.END, 20);
+        constraintSet.connect(containerInnerRght.getId(), ConstraintSet.END, this.getId(), ConstraintSet.END, 0);
         constraintSet.connect(containerInnerRght.getId(), ConstraintSet.BOTTOM, this.getId(), ConstraintSet.BOTTOM);
         constraintSet.connect(containerInnerRght.getId(), ConstraintSet.TOP, this.getId(), ConstraintSet.TOP, 0);
 
@@ -114,9 +115,6 @@ public class ContainerTestWordset extends ConstraintLayout {
         setBackground(shape);
     }
 
-    private void setLytPrms(LayoutParams lp) {
-        setLayoutParams(lp);
-    }
 
     private void setMargin(LayoutParams lp) {
         lp.setMargins(VAL_MRGN_LFT, VAL_MRGN_TOP, VAL_MRGN_RGHT, VAL_MRGN_BTTM);

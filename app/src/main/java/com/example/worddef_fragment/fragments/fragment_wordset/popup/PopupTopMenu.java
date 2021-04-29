@@ -12,6 +12,8 @@ import androidx.fragment.app.FragmentActivity;
 import com.example.worddef_fragment.R;
 import com.example.worddef_fragment.fragments.fragment_settings.FragmentSettings;
 import com.example.worddef_fragment.cloud_service.manager.CloudManagerFactory;
+import com.example.worddef_fragment.fragments.fragment_wordset.FragmentWordSet;
+import com.example.worddef_fragment.fragments.fragment_wordset.editor.UiEdtrWrdSet;
 import com.example.worddef_fragment.other.ScannerActivity;
 
 import java.io.File;
@@ -50,7 +52,8 @@ public class PopupTopMenu extends PopupMenu {
 
                 case 1:
                     String srcPath2=anchor.getContext().getFilesDir().getPath() + File.separator + "unzip_files";
-                    new CloudManagerFactory().create("gdrive", pb).restore(context, srcPath2);
+                    if(new CloudManagerFactory().create("gdrive", pb).restore(context, srcPath2))
+                        new UiEdtrWrdSet(context).updateScrn(FragmentWordSet.ORDER_BY);
                     break;
 
                 case 2:

@@ -1,10 +1,10 @@
-package com.example.worddef_fragment.fragments.fragment_test.views;
+package com.example.worddef_fragment.fragments.fragment_test.test_screen.views.buttons;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.example.worddef_fragment.fragments.fragment_test.Choice;
+import com.example.worddef_fragment.fragments.fragment_test.test_screen.test_process.Choice;
 
 public class ButtonChoice extends androidx.appcompat.widget.AppCompatButton {
     private Choice choice;

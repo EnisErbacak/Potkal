@@ -1,6 +1,7 @@
 package com.example.worddef_fragment.fragments.fragment_worddef.dialog.dialog_fragments;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.example.worddef_fragment.file.shared_preferences.SPEditor;
 import com.example.worddef_fragment.fragments.fragment_worddef.builder.data.operator.WordOperator;
 import com.example.worddef_fragment.fragments.fragment_worddef.builder.ui.operator.BuilderEditor;
 import com.example.worddef_fragment.fragments.fragment_worddef.builder.data.Word;
+import com.example.worddef_fragment.reaction.Reaction;
 import com.example.worddef_fragment.tdk.TdkBtnLstner;
 import com.example.worddef_fragment.tdk.TdkTxtWatcher;
 import com.example.worddef_fragment.tdk.process.TdkWord;
@@ -116,6 +118,11 @@ public class FragmentDialogAddWrdDef extends AppCompatDialogFragment implements 
     public void onResume() {
         super.onResume();
         setView();
+    }
+
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
     }
 
     @Override
@@ -220,7 +227,6 @@ public class FragmentDialogAddWrdDef extends AppCompatDialogFragment implements 
 
             if (isEmpty(wrdStr))
                 Toast.makeText(view.getContext(), "PLEASE INPUT WORD!", Toast.LENGTH_SHORT).show();
-
             else {
                 getWord().setWrd(wrdStr);
                 getWord().setDef(defStr);
@@ -228,11 +234,13 @@ public class FragmentDialogAddWrdDef extends AppCompatDialogFragment implements 
                 if(kindStr!=null) getWord().setKind(kindStr);
                 if(langStr!=null) getWord().setLang(langStr);
 
-                new FragmentOperatorFactory().create("worddef",getContext()).add(word.getWrd(), new WordOperator().convert2Json(getWord()));
-
-                new BuilderEditor().getUiEditor(getContext(), setName).updateScreen();
+                if(! new FragmentOperatorFactory().create("worddef",getContext()).add(word.getWrd(), new WordOperator().convert2Json(getWord())))
+                    new Reaction(getContext()).showShort(getContext().getResources().getString(R.string.word_exists));
+                else {
+                    new BuilderEditor().getUiEditor(getContext(), setName).updateScreen();
+                    dialog.dismiss();
+                }
             }
-            dialog.dismiss();
         }
 
         private boolean isEmpty(String txt) {

@@ -53,10 +53,14 @@ public class FragmentDialogChngWrdDef extends AppCompatDialogFragment implements
     private View anchor;
     private String setName;
     private String wordStr;
-    private Word word;
-    private Word newWordObj;
 
-    private ArrayList<String> defList;
+
+    private ArrayList<TdkWord> tdkWordList;
+
+    private TdkTxtWatcher etWrdTxtWtchr;
+    private Word word;
+
+    //private ArrayList<String> defList;
 
     public FragmentDialogChngWrdDef(LinearLayout pnlWrdDefVrt, View anchor, String setName) {
         this.pnlWrdDefVrt = pnlWrdDefVrt;
@@ -115,7 +119,7 @@ public class FragmentDialogChngWrdDef extends AppCompatDialogFragment implements
         chngWrdDefLstner = new BtnChngWrdDefLstner(FragmentDialogChngWrdDef.this, anchor,pnlWrdDefVrt);
         btnAddWrdDef.setOnClickListener(chngWrdDefLstner);
 
-        etDlgChngWrd.addTextChangedListener(new TdkTxtWatcher(FragmentDialogChngWrdDef.this, btnDlgChngDsplyTdk, pbTdkChng, etDlgChngDef));
+
 
         this.wordDefOperator =new FragmentOperatorFactory().create("worddef",getContext());
         wordStr= ((TextView) anchor).getText().toString();
@@ -123,6 +127,9 @@ public class FragmentDialogChngWrdDef extends AppCompatDialogFragment implements
 
         setBckGrnd();
         setDefault();
+
+        etWrdTxtWtchr=new TdkTxtWatcher(FragmentDialogChngWrdDef.this, btnDlgChngDsplyTdk, pbTdkChng, etDlgChngDef);
+        etDlgChngWrd.addTextChangedListener(etWrdTxtWtchr);
     }
 
 
@@ -141,12 +148,16 @@ public class FragmentDialogChngWrdDef extends AppCompatDialogFragment implements
     }
 
     public Word getWord() {
+        return  word;
+        /*
         JSONObject job= wordDefOperator.get(wordStr);
         try {
             job.getJSONObject(wordStr);
         }catch (JSONException je){je.printStackTrace();}
         word= wordOperator.convert2Word(wordDefOperator.get(wordStr), wordStr);
         return word;
+
+         */
     }
 
     @Override
@@ -156,12 +167,12 @@ public class FragmentDialogChngWrdDef extends AppCompatDialogFragment implements
 
     @Override
     public void removeEtWrdTxtWtcher() {
-
+        etDlgChngWrd.removeTextChangedListener(etWrdTxtWtchr);
     }
 
     @Override
     public void reAttachEtWrdListener() {
-
+        etDlgChngWrd.addTextChangedListener(etWrdTxtWtchr);
     }
 
     @Override
@@ -191,30 +202,22 @@ public class FragmentDialogChngWrdDef extends AppCompatDialogFragment implements
 
     @Override
     public Button getBtnDsplyTdk() {
-        return null;
+        return btnDlgChngDsplyTdk;
     }
 
     @Override
     public void setTdkWordList(ArrayList<TdkWord> tdkWordList) {
-
+        this.tdkWordList=tdkWordList;
     }
 
     @Override
     public ArrayList<TdkWord> getTdkWordList() {
-        return null;
+        return tdkWordList;
     }
 
     @Override
     public ProgressBar getPbTdk() {
-        return null;
-    }
-
-    public ArrayList<String> getDefList() {
-        return defList;
-    }
-
-    public void setDefList(ArrayList<String> defList) {
-        this.defList = defList;
+        return pbTdkChng;
     }
 
 

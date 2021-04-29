@@ -55,4 +55,15 @@
     <string name="only_on_current_wordset">Sadece Geçerli Kelime Grubunda</string>
     <string name="on_all_wordset">Tüm Kelime Gruplarında</string>
     <string name="other">Diğer</string>
+    <string name="sign_in_first">Lütfen Önce Giriş Yapın!</string>
+    <string name="now_backup_or_restore">Şimdi Yedekleme ya da Geri Yükleme Yapabilirsiniz!</string>
+    <string name="set_exists">Bu İsimde Kelime Grubu Mevcut</string>
+    <string name="word_exists">Bu Kelime Mevcut</string>
+    <string name="create_test">Test Oluştur</string>
+    <string name="choose_question_choice">Soru - Kelime Tipi Seçiniz</string>
+    <string name="pls_choose_set">Lütfen Kelime Grubu Seçiniz!</string>
+    <string name="word_definition">Kelime - Anlam</string>
+    <string name="definition_word">Anlam Kelime</string>
+    <string name="word_exists_in">Bu Kelime Şurada Mevcut</string>
+    <string name="pls_choose_safe_set">Seçilen Kelime Grubu 4\'ten Daha Az Kelime-Anlam İçeriyor</string>
 </resources>

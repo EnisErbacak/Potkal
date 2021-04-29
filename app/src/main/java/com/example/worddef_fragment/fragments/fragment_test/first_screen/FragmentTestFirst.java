@@ -1,6 +1,8 @@
-package com.example.worddef_fragment.fragments.fragment_test;
+package com.example.worddef_fragment.fragments.fragment_test.first_screen;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,14 +11,17 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.worddef_fragment.R;
 import com.example.worddef_fragment.file.shared_preferences.SPEditor;
+import com.example.worddef_fragment.fragments.fragment_test.FragmentListenerBackPress;
 import com.example.worddef_fragment.fragments.fragment_wordset.FragmentWordSet;
 
 public class FragmentTestFirst extends Fragment {
-    private LinearLayout llTestFirst;
+    private LinearLayout llTestFirstSets, llTesFirsttUpper, llTestFirstLower;
+    private ConstraintLayout clTestFirstMain;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_test_first,container,false);
@@ -31,13 +36,22 @@ public class FragmentTestFirst extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        llTestFirst=view.findViewById(R.id.llTestFirst);
+        llTestFirstSets =view.findViewById(R.id.llTestFirstSets);
+        new CreateFirstTestScreen().create(getContext(), llTestFirstSets);
+
+        clTestFirstMain=view.findViewById(R.id.clTestFirstMain);
+        llTesFirsttUpper=view.findViewById(R.id.llTestFirstUpper);
+        llTestFirstLower=view.findViewById(R.id.llTestFirstLower);
+
         setStyle(getContext());
-        new CreateFirstTestScreen().create(getContext(), llTestFirst);
     }
 
     private void setStyle(Context context) {
         SPEditor spEditor=new SPEditor();
+        clTestFirstMain.setBackgroundColor(Color.parseColor("#FF000000"));
+        llTesFirsttUpper.getBackground().setColorFilter(Color.parseColor("#1565C0"), PorterDuff.Mode.SRC_ATOP);
+        llTestFirstLower.getBackground().setColorFilter(Color.parseColor("#1565C0"), PorterDuff.Mode.SRC_ATOP);
+
     }
 
     private void setCondition(View view) {

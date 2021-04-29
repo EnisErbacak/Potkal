@@ -24,6 +24,35 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/correct"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvTestScoreCrrct"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -54,34 +83,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/correct"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvTestScoreCrrct"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -111,7 +112,6 @@
                     android:id="@+id/tvTestQuestion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/choice_rounded"
                     android:text="TextView"
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -126,9 +126,11 @@
         android:id="@+id/svTestChoice"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:background="#009688"
-        app:layout_constraintBottom_toBottomOf="@id/clTestBottom"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnTestFinish"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -140,7 +142,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.example.worddef_fragment.fragments.fragment_test.views.ButtonChoice
+            <com.example.worddef_fragment.fragments.fragment_test.test_screen.views.buttons.ButtonChoice
                 android:id="@+id/btnTestCh1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -148,7 +150,7 @@
                 android:background="@color/choice_tint"
                 android:text="Button" />
 
-            <com.example.worddef_fragment.fragments.fragment_test.views.ButtonChoice
+            <com.example.worddef_fragment.fragments.fragment_test.test_screen.views.buttons.ButtonChoice
                 android:id="@+id/btnTestCh2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -156,7 +158,7 @@
                 android:background="@color/choice_tint"
                 android:text="Button" />
 
-            <com.example.worddef_fragment.fragments.fragment_test.views.ButtonChoice
+            <com.example.worddef_fragment.fragments.fragment_test.test_screen.views.buttons.ButtonChoice
                 android:id="@+id/btnTestCh3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -164,7 +166,7 @@
                 android:background="@color/choice_tint"
                 android:text="Button" />
 
-            <com.example.worddef_fragment.fragments.fragment_test.views.ButtonChoice
+            <com.example.worddef_fragment.fragments.fragment_test.test_screen.views.buttons.ButtonChoice
                 android:id="@+id/btnTestCh4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -175,38 +177,15 @@
         </LinearLayout>
     </ScrollView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clTestBottom"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnTestFinish"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="Button"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/svTestChoice">
-
-        <Button
-            android:id="@+id/btnTestPrevScrn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="◄"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btnTestNextScrn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btnTestNextScrn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="►"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnTestPrevScrn"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

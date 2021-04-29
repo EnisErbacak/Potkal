@@ -42,7 +42,7 @@ public class TdkManager {
 
                 tdkWordList=parse.parseResult(fetch.fetchWord(keyWord));
 
-                if(tdkWordList!=null) {
+                if(tdkWordList.size()!=0) {
                     ((Activity) context).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

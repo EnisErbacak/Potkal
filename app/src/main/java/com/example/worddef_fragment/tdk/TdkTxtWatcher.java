@@ -30,6 +30,7 @@ public class TdkTxtWatcher implements TextWatcher {
 
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        /*
         while(charSequence.length()>0) {
             if(turn1) {
                 fetcher1.interrupt();
@@ -45,11 +46,11 @@ public class TdkTxtWatcher implements TextWatcher {
                 break;
             }
         }
+         */
     }
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        pbTdk.setAlpha(0);
         pbTdk.setAlpha(1);
     }
 
@@ -61,14 +62,26 @@ public class TdkTxtWatcher implements TextWatcher {
             if (turn1) {
                 pbTdk.setAlpha(1);
                 pbTdk.setVisibility(View.VISIBLE);
+
+                if(fetcher2!=null)
+                    if(! fetcher2.isInterrupted())
+                        fetcher2.interrupt();
+
                 fetcher1 = new Fetcher1(customDialogFragment, btnDsply, txtViewDef, wrd);
                 fetcher1.start();
+                turn1=false;
                 break;
             } else {
                 pbTdk.setAlpha(1);
                 pbTdk.setVisibility(View.VISIBLE);
+
+                if(fetcher1!=null)
+                    if(! fetcher1.isInterrupted())
+                        fetcher1.interrupt();
+
                 fetcher2 = new Fetcher2(customDialogFragment, btnDsply, txtViewDef, wrd);
                 fetcher2.start();
+                turn1=true;
                 break;
             }
         }
@@ -93,11 +106,13 @@ public class TdkTxtWatcher implements TextWatcher {
         @Override
         public void run() {
             try {
-                this.sleep(1500);
+                System.out.println("++++++T1 STARTED");
+                this.sleep(1000);
                 new TdkManager(wrd, customDialogFragment).search();
-                System.out.println("1  DONE");
+                System.out.println("++++++1  DONE");
+                this.interrupt();
             } catch (InterruptedException e) {
-                System.out.println("1  Dead");
+                System.out.println("++++++1  Dead");
                 this.interrupt();
             }
         }
@@ -119,11 +134,13 @@ public class TdkTxtWatcher implements TextWatcher {
         @Override
         public void run() {
             try {
+                System.out.println("------T2 STARTED");
                 this.sleep(1000);
                 new TdkManager(wrd, customDialogFragment).search();
-                System.out.println("2   DONE");
+                System.out.println("------T2   DONE");
+                this.interrupt();
             } catch (InterruptedException e) {
-                System.out.println(" 2  Dead");
+                System.out.println("------T2  Dead");
                 this.interrupt();
             }
         }

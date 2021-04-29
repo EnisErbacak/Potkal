@@ -1,13 +1,12 @@
-package com.example.worddef_fragment.fragments.fragment_test;
+package com.example.worddef_fragment.fragments.fragment_test.test_screen.test_process;
 
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.worddef_fragment.R;
-import com.example.worddef_fragment.fragments.fragment_test.Choice;
-import com.example.worddef_fragment.fragments.fragment_test.FragmentTest;
-import com.example.worddef_fragment.fragments.fragment_test.question_creator.TestPool;
+import com.example.worddef_fragment.fragments.fragment_test.test_screen.FragmentTest;
+import com.example.worddef_fragment.fragments.fragment_test.test_screen.test_process.question_creator.TestPool;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,7 +30,7 @@ public class TestScreen {
         this.questionNo=questionNo;
         this.fragmentTest=fragmentTest;
         screenNo=questionNo;
-        question=testPool.getWordList().get(questionNo);
+        question=testPool.getqList().get(questionNo);
         tvQ = clTestMain.findViewById(R.id.tvTestQuestion);
 
         choiceArr=new Choice[]{new Choice(TestScreen.this), new Choice(TestScreen.this), new Choice(TestScreen.this), new Choice(TestScreen.this)};
@@ -45,10 +44,9 @@ public class TestScreen {
     }
 
     private void onCreate() {
-        tvQ.setText(testPool.getWordList().get(questionNo));
+        tvQ.setText(testPool.getqList().get(questionNo));
 
-        //generateRandoms(testPool.getDefList().size()-1);
-        generateRandoms2(testPool.getDefList().size()-1);
+        generateRandoms2(testPool.getChoiceList().size()-1);
 
         attachChoiceStr();
         setChoiceBtnNo();
@@ -56,9 +54,9 @@ public class TestScreen {
         setCorrectChoice();
 
         attachBtn2Choice();
-
     }
 
+    // Generates random numbers as count passed by in a range.
     public void generateRandoms2(int max) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i=0; i<=max; i++) {
@@ -72,33 +70,33 @@ public class TestScreen {
         }
     }
 
+    // Generates random number in a range.
     private int getRandom(int max) {
         return new Random().nextInt(max+1);
     }
 
+    // Sets the buttons texts.
     private void attachChoiceStr(){
         for(Choice ch:choiceArr) {
-            ch.setStr(testPool.getDefList().get(ch.getDefNo()));
+            ch.setStr(testPool.getChoiceList().get(ch.getDefNo()));
         }
     }
 
+    // Makes placements of the the buttons
     private void setChoiceBtnNo() {
-        /*
-        for(Choice ch:choiceArr) {
-            ch.setBtnNo(getRandom(3));
-        }
-         */
         for(int i=0;i<choiceArr.length;i++) {
             choiceArr[i].setBtnNo(i);
         }
     }
 
+    // Selects a random number and sets it as a correct choice
     private void setCorrectChoice() {
         int randomInt=getRandom(3);
-        choiceArr[randomInt].setStr(testPool.getDefList().get(questionNo));
+        choiceArr[randomInt].setStr(testPool.getChoiceList().get(questionNo));
         choiceArr[randomInt].setCorrect(true);
     }
 
+    // Attaches choice objects to the buttons.
     private void attachBtn2Choice() {
         for(Choice ch:choiceArr) {
             fragmentTest.getBtnChArr()[ch.getBtnNo()].setChoice(ch);
@@ -108,19 +106,28 @@ public class TestScreen {
         }
     }
 
-    private void reDraw() {
-        //attachBtn2Choice();
-        tvQ.setText(testPool.getWordList().get(questionNo));
+    // Marks the touched buttons red or green.
+    protected void reDraw() {
+        tvQ.setText(testPool.getqList().get(questionNo));
         for(Choice ch:choiceArr) {
-            //fragmentTest.getBtnChArr()[ch.getBtnNo()].setChoice(ch);
             ch.draw();
         }
     }
 
-
+    // Makes the other buttons unselectable/touchable if a button touched/selected.
     public void makeAllUnselectable() {
         for(Choice ch: choiceArr) {
-            ch.setSelected(true);
+            //ch.setSelected(true);
+            ch.setSelectable(false);
+        }
+    }
+
+    protected void showCorrect(){
+        for(Choice ch: choiceArr) {
+            //ch.setSelected(true);
+            ch.setSelectable(false);
+            if(ch.isCorrect()) ch.setSelected(true);
+            ch.draw();
         }
     }
 

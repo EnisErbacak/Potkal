@@ -3,6 +3,7 @@ package com.example.worddef_fragment.fragments.processes.explorer;
 import android.content.Context;
 import android.print.PrintAttributes;
 
+import com.example.worddef_fragment.R;
 import com.example.worddef_fragment.file.operator.FileManager;
 import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
 import com.example.worddef_fragment.file.shared_preferences.SPEditor;
@@ -36,16 +37,16 @@ public class WordDefExplorer implements FragmentExplorer, ImprovedWorddefExplore
 
     @Override
     public boolean checkDuplication(String dirOrFile, String name) {
-        boolean result=true;
+        boolean result=false;
         try {
             JSONObject jObj=new JSONObject(fileManager.operate().read(dirOrFile));
             if(jObj.isNull(name)) {
-                result=false;
+                result=true;
             }
         } catch (JSONException jsonException) {
             jsonException.printStackTrace();
         }
-        return !result;
+        return result;
     }
 
     @Override
@@ -74,7 +75,7 @@ public class WordDefExplorer implements FragmentExplorer, ImprovedWorddefExplore
             for(String str2: getNames(dir + File.separator+ str)) {
 
                 if(str2.equals(name)) {
-                        new Reaction(context).showShort("This Word is Already Exists in: "+str);
+                        new Reaction(context).showShort(context.getResources().getString(R.string.word_exists_in)+ "\""+str+"\"");
                         result=false;
                     }
             }

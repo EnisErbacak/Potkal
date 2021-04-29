@@ -25,7 +25,7 @@ public class ContainerInnerRght extends LinearLayout {
     }
     void setView(){
         setOrientation(LinearLayout.VERTICAL);
-        setLayoutParams(new LayoutParams(ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        setLayoutParams(new LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.MATCH_CONSTRAINT));
 
     }
 

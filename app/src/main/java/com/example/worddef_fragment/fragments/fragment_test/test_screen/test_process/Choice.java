@@ -1,15 +1,15 @@
-package com.example.worddef_fragment.fragments.fragment_test;
+package com.example.worddef_fragment.fragments.fragment_test.test_screen.test_process;
 
 import android.graphics.Color;
 import android.widget.TextView;
 
 import com.example.worddef_fragment.R;
-import com.example.worddef_fragment.fragments.fragment_test.views.ButtonChoice;
+import com.example.worddef_fragment.fragments.fragment_test.test_screen.views.buttons.ButtonChoice;
 
 public class Choice {
     private String str;
     private int btnNo, defNo;
-    private boolean isSelected, isCorrect;
+    private boolean isSelected, isCorrect, isSelectable=true;
     private ButtonChoice buttonChoice;
     private TextView tvScoreCorrect, tvScoreIncorrect;
     private TestScreen testScreen;
@@ -75,25 +75,39 @@ public class Choice {
         this.tvScoreIncorrect = tvScoreIncorrect;
     }
 
+    public boolean isSelectable() {
+        return isSelectable;
+    }
+
+    public void setSelectable(boolean selectable) {
+        isSelectable = selectable;
+    }
+
     public void mark() {
-        if(isSelected()) {
-            if(isCorrect()) buttonChoice.setBackgroundColor(Color.GREEN);
-            else buttonChoice.setBackgroundColor(Color.RED);
-        } else {
+            if (isSelected()) {
+                if (isCorrect()) buttonChoice.setBackgroundColor(Color.GREEN);
+                else buttonChoice.setBackgroundColor(Color.RED);
+            }
+         else {
             buttonChoice.setBackgroundColor(buttonChoice.getContext().getResources().getColor(R.color.choice_tint));
         }
     }
 
     public void select() {
-        if( isSelected==false) {
+        //if( isSelected==false) {
+        if(isSelectable()) {
             testScreen.makeAllUnselectable();
+            setSelected(true);
             if (isCorrect) {
-                buttonChoice.setBackgroundColor(Color.GREEN);
+                testScreen.reDraw();
+                //buttonChoice.setBackgroundColor(Color.GREEN);
                 tvScoreCorrect.setText(String.valueOf(Integer.parseInt(tvScoreCorrect.getText().toString()) + 1));
             } else {
-                buttonChoice.setBackgroundColor(Color.RED);
+                //buttonChoice.setBackgroundColor(Color.RED);
+                testScreen.reDraw();
                 tvScoreIncorrect.setText(String.valueOf(Integer.parseInt(tvScoreIncorrect.getText().toString()) + 1));
             }
+            testScreen.showCorrect();
         }
     }
 

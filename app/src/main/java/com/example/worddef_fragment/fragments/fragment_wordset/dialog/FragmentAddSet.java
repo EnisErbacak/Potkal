@@ -103,12 +103,12 @@ public class FragmentAddSet extends AppCompatDialogFragment {
             wordSetName=edtTxtWrdSetName.getText().toString();
 
             if(!isEmpty(wordSetName)) {
-                //if (new WordSetEditor2(view.getContext()).createNewWordSet(wordSetName)) {
                 if(new FragmentOperatorFactory().create("wordset",getContext()).add(wordSetName, new JSONObject())) {
                     FragmentAddSet.this.dismiss();
                     new UiEdtrWrdSet(getContext()).updateScrn(FragmentWordSet.ORDER_BY);
+                } else {
+                    new Reaction(getContext()).showShort(view.getContext().getResources().getString(R.string.set_exists));
                 }
-                //panelMainVrt.invalidate();
             }
             else
                 new Reaction(getContext()).showShort("PLEASE INPUT A NAME!");
