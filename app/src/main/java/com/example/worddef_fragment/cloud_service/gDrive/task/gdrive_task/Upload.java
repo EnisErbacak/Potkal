@@ -2,8 +2,8 @@ package com.example.worddef_fragment.cloud_service.gDrive.task.gdrive_task;
 
 import android.content.Context;
 import android.content.Intent;
-import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
-import com.example.worddef_fragment.reaction.Reaction;
+import com.example.worddef_fragment.file.path_picker.PathPicker;
+import com.example.worddef_fragment.reaction.Reactor;
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
 import com.google.api.client.http.FileContent;
 import com.google.api.services.drive.model.File;
@@ -24,12 +24,12 @@ public class Upload extends GDriveTask {
     private Boolean upload() {
         boolean result=false;
 
-        Reaction reaction=new Reaction(context);
+        Reactor reactor =new Reactor(context);
         File fileMetaData = new File();
         fileMetaData.setName("Potkal.zip");
         fileMetaData.setParents(Collections.singletonList("appDataFolder"));
 
-        String zipPath=new PathPickerFactory().create("zip").get(context);
+        String zipPath=new PathPicker(context).get(PathPicker.ZIP);
         java.io.File file = new java.io.File(zipPath + java.io.File.separator+ "Potkal.zip");
 
         FileContent mediaContent = new FileContent("application/zip", file);
@@ -50,11 +50,11 @@ public class Upload extends GDriveTask {
             context.startActivity(intent);
             result=false;
         } catch (Exception e) {
-            reaction.showShort(e.getMessage());
+            reactor.showShort(e.getMessage());
             result=false;
         }
         if (myFile == null) {
-            reaction.showShort( "NULL GDRIVE FILE!");
+            reactor.showShort( "NULL GDRIVE FILE!");
             result=false;
             try {
                 throw new IOException("null result when requesting file creation");

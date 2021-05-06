@@ -111,7 +111,6 @@
                     android:alpha="0"
                     android:indeterminate="true"
                     android:indeterminateTint="#FFFFFF"
-                    android:progressTintMode="src_in"
                     android:visibility="visible" />
 
             </RelativeLayout>

@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 
 import com.example.worddef_fragment.file.shared_preferences.SPEditor;
 import com.example.worddef_fragment.fragments.fragment_settings.element.spinners.CustomSpinner;
-import com.example.worddef_fragment.fragments.fragment_settings.element.spinners.Listener;
+import com.example.worddef_fragment.fragments.fragment_settings.element.spinners.SpinnerOnSelectedListener;
 
 public class SpnrTxtSize extends CustomSpinner {
     private Context context;
@@ -25,7 +25,7 @@ public class SpnrTxtSize extends CustomSpinner {
 
     private void onCreate() {
         initialize();
-        setOnItemSelectedListener(new Listener(sharedPrefKey, null));
+        setOnItemSelectedListener(new SpinnerOnSelectedListener(sharedPrefKey, null));
     }
 
     public void initialize() {
@@ -33,6 +33,11 @@ public class SpnrTxtSize extends CustomSpinner {
         setAdapter(arrayAdapter);
         setLastSelecedItem(arrayAdapter);
     }
+
+
+
+
+
 
      public int getLastValue() {
         return Integer.valueOf(spEditor.getValue(context, sharedPrefKey));

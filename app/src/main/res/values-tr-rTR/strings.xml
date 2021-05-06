@@ -55,7 +55,7 @@
     <string name="only_on_current_wordset">Sadece Geçerli Kelime Grubunda</string>
     <string name="on_all_wordset">Tüm Kelime Gruplarında</string>
     <string name="other">Diğer</string>
-    <string name="sign_in_first">Lütfen Önce Giriş Yapın!</string>
+    <string name="sign_in_first">Lütfen Yedekleme ve Geri Yükleme Öncesi Giriş Yapın!!</string>
     <string name="now_backup_or_restore">Şimdi Yedekleme ya da Geri Yükleme Yapabilirsiniz!</string>
     <string name="set_exists">Bu İsimde Kelime Grubu Mevcut</string>
     <string name="word_exists">Bu Kelime Mevcut</string>
@@ -66,4 +66,16 @@
     <string name="definition_word">Anlam Kelime</string>
     <string name="word_exists_in">Bu Kelime Şurada Mevcut</string>
     <string name="pls_choose_safe_set">Seçilen Kelime Grubu 4\'ten Daha Az Kelime-Anlam İçeriyor</string>
+    <string name="finish_test">Testi Bitir</string>
+    <string name="exit">Kapat</string>
+    <string name="question_bg_col">Soru Arka Plan Rengi</string>
+    <string name="choice_bg_col">Seçenek Arka Plan Rengi</string>
+    <string name="question_txt_col">Soru Metin Rengi</string>
+    <string name="score_panel_bg_col">Skor Paneli Arka Plan Rengi</string>
+    <string name="test_background">Test Arka Plan Rengi</string>
+    <string name="question_txt_size">Soru  Metin Boyutu</string>
+    <string name="choice_txt_size">Seçenek Metin Boyutu</string>
+    <string name="score_txt_size">Skor Metin Boyutu</string>
+    <string name="score_txt_col">Skor Paneli Metin Rengi</string>
+    <string name="choice_txt_col">Seçenek Metin Rengi</string>
 </resources>

@@ -9,14 +9,14 @@ import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.example.worddef_fragment.fragments.fragment_settings.element.textview.TvChild;
 
-public class ClContainer extends ConstraintLayout {
+public class ClSpinnerContainer extends ConstraintLayout {
     private TvChild tvChild;
     private  Spinner sp;
 
     private String txt;
     private ConstraintSet constraintSet;
 
-    public ClContainer(Context context, String txt, Spinner sp) {
+    public ClSpinnerContainer(Context context, String txt, Spinner sp) {
         super(context);
         this.tvChild =new TvChild(context,txt);
         this.sp=sp;
@@ -35,7 +35,7 @@ public class ClContainer extends ConstraintLayout {
     }
 
     private void setStyle() {
-        setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         locateSubPanels();
     }
 

@@ -42,7 +42,7 @@ public class TvWord extends TvWrdDef {
     }
 
     private int getTxtSize() {
-        return Integer.valueOf(new SPEditor().getValue(getContext(), SPEditor.WORD_TXT_SIZE));
+        return Integer.valueOf(new SPEditor().getValue(getContext(), SPEditor.TXT_SIZE_WORD));
     }
 
     private int getDip(int value){return ((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, getResources().getDisplayMetrics()));}

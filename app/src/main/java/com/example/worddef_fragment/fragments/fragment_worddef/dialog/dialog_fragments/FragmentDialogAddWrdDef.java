@@ -20,12 +20,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.worddef_fragment.R;
-import com.example.worddef_fragment.fragments.processes.operator.FragmentOperatorFactory;
+import com.example.worddef_fragment.fragments.fragment_worddef.manager.WorddefManager;
 import com.example.worddef_fragment.file.shared_preferences.SPEditor;
 import com.example.worddef_fragment.fragments.fragment_worddef.builder.data.operator.WordOperator;
 import com.example.worddef_fragment.fragments.fragment_worddef.builder.ui.operator.BuilderEditor;
 import com.example.worddef_fragment.fragments.fragment_worddef.builder.data.Word;
-import com.example.worddef_fragment.reaction.Reaction;
+import com.example.worddef_fragment.reaction.Reactor;
 import com.example.worddef_fragment.tdk.TdkBtnLstner;
 import com.example.worddef_fragment.tdk.TdkTxtWatcher;
 import com.example.worddef_fragment.tdk.process.TdkWord;
@@ -151,13 +151,13 @@ public class FragmentDialogAddWrdDef extends AppCompatDialogFragment implements 
     }
 
     @Override
-    public Word getWord() {
+    public Word getWordObj() {
         return word;
     }
 
     @Override
-    public void setWord(Word word) {
-        this.word=word;
+    public void setWordObj(Word wordObj) {
+        this.word= wordObj;
     }
 
     public Button getBtnDsplyTdk() {
@@ -228,14 +228,14 @@ public class FragmentDialogAddWrdDef extends AppCompatDialogFragment implements 
             if (isEmpty(wrdStr))
                 Toast.makeText(view.getContext(), "PLEASE INPUT WORD!", Toast.LENGTH_SHORT).show();
             else {
-                getWord().setWrd(wrdStr);
-                getWord().setDef(defStr);
-                if(exmpStr!=null) getWord().setExmp(exmpStr);
-                if(kindStr!=null) getWord().setKind(kindStr);
-                if(langStr!=null) getWord().setLang(langStr);
+                getWordObj().setWrd(wrdStr);
+                getWordObj().setDef(defStr);
+                if(exmpStr!=null) getWordObj().setExmp(exmpStr);
+                if(kindStr!=null) getWordObj().setKind(kindStr);
+                if(langStr!=null) getWordObj().setLang(langStr);
 
-                if(! new FragmentOperatorFactory().create("worddef",getContext()).add(word.getWrd(), new WordOperator().convert2Json(getWord())))
-                    new Reaction(getContext()).showShort(getContext().getResources().getString(R.string.word_exists));
+                if(! new WorddefManager().operate(getContext()).add(word.getWrd(), new WordOperator().convert2Json(getWordObj())))
+                    new Reactor(getContext()).showShort(getContext().getResources().getString(R.string.word_exists));
                 else {
                     new BuilderEditor().getUiEditor(getContext(), setName).updateScreen();
                     dialog.dismiss();

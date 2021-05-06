@@ -8,7 +8,7 @@
     android:background="#009688">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/containerTestTop"
+        android:id="@+id/clTestScore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FF9800"
@@ -32,7 +32,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/tvTestScoreCorrectStr"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/correct"
@@ -42,7 +42,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvTestScoreCrrct"
+                    android:id="@+id/tvTestScoreCorrect"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -60,17 +60,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
                 <TextView
-                    android:id="@+id/tvTestScore"
+                    android:id="@+id/tvTestScoreIncorrectStr"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/incorrect"
-                    android:textColor="#000000"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvTestScoreIncrrct"
+                    android:id="@+id/tvTestScoreIncorrect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -79,7 +78,7 @@
                     android:textColor="#000000"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tvTestScore"
+                    app:layout_constraintStart_toEndOf="@+id/tvTestScoreIncorrectStr"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -96,7 +95,7 @@
         app:layout_constraintBottom_toTopOf="@id/svTestChoice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/containerTestTop">
+        app:layout_constraintTop_toBottomOf="@+id/clTestScore">
 
         <LinearLayout
             android:id="@+id/llTestQuestion"
@@ -147,7 +146,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@color/choice_tint"
+                android:background="@color/col_test_choice_bg"
                 android:text="Button" />
 
             <com.example.worddef_fragment.fragments.fragment_test.test_screen.views.buttons.ButtonChoice
@@ -155,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@color/choice_tint"
+                android:background="@color/col_test_choice_bg"
                 android:text="Button" />
 
             <com.example.worddef_fragment.fragments.fragment_test.test_screen.views.buttons.ButtonChoice
@@ -163,15 +162,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@color/choice_tint"
-                android:text="Button" />
+                android:background="@color/col_test_choice_bg"
+                android:text="Button"
+                android:textSize="14sp" />
 
             <com.example.worddef_fragment.fragments.fragment_test.test_screen.views.buttons.ButtonChoice
                 android:id="@+id/btnTestCh4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@color/choice_tint"
+                android:background="@color/col_test_choice_bg"
                 android:text="Button" />
 
         </LinearLayout>
@@ -182,7 +182,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:enabled="false"
-        android:text="Button"
+        android:text="@string/finish_test"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

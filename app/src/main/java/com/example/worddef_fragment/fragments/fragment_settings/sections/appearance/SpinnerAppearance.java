@@ -5,9 +5,7 @@ import android.widget.ArrayAdapter;
 
 import com.example.worddef_fragment.file.shared_preferences.SPEditor;
 import com.example.worddef_fragment.fragments.fragment_settings.element.spinners.CustomSpinner;
-import com.example.worddef_fragment.fragments.fragment_settings.element.spinners.Listener;
-
-import io.opencensus.internal.StringUtils;
+import com.example.worddef_fragment.fragments.fragment_settings.element.spinners.SpinnerOnSelectedListener;
 
 public class SpinnerAppearance extends CustomSpinner {
     private Context context;
@@ -33,7 +31,7 @@ public class SpinnerAppearance extends CustomSpinner {
 
     void onCreate() {
         initialize();
-        setOnItemSelectedListener(new Listener(sharedPrefKey,null));
+        setOnItemSelectedListener(new SpinnerOnSelectedListener(sharedPrefKey,null));
     }
 
     public void initialize() {

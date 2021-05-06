@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.example.worddef_fragment.R;
 import com.example.worddef_fragment.other.ScannerActivity;
-import com.example.worddef_fragment.reaction.Reaction;
+import com.example.worddef_fragment.reaction.Reactor;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
@@ -23,7 +23,7 @@ public class Connect extends GDriveTask {
     @Override
     public boolean perform() {
         boolean result=false;
-        Reaction reaction=new Reaction(context);
+        Reactor reactor =new Reactor(context);
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(new ScannerActivity().scanForActivity(context));
 
@@ -36,12 +36,12 @@ public class Connect extends GDriveTask {
             loggedIn=true;
         }
         catch (NullPointerException nullPointerException) {
-            reaction.showShort( context.getResources().getString(R.string.sign_in_first));
+            reactor.showShort( context.getResources().getString(R.string.sign_in_first));
             loggedIn=false;
             result=false;
         }
         catch (Exception exception) {
-            reaction.showShort("SOMETHING WENT WRONG!");
+            reactor.showShort("SOMETHING WENT WRONG!");
             loggedIn=false;
             result=false;
         }

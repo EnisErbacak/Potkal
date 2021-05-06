@@ -6,10 +6,10 @@ import android.content.ContextWrapper;
 import android.widget.LinearLayout;
 
 import com.example.worddef_fragment.R;
-import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
+import com.example.worddef_fragment.file.path_picker.PathPicker;
 import com.example.worddef_fragment.fragments.fragment_wordset.FragmentWordSet;
+import com.example.worddef_fragment.fragments.fragment_wordset.manager.WordsetManager;
 import com.example.worddef_fragment.fragments.fragment_wordset.views.container.ContainerWrdset;
-import com.example.worddef_fragment.fragments.processes.explorer.FragmentExplorerFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -49,9 +49,10 @@ public class UiEdtrWrdSet {
     }
 
     private void buildByCrtdDateDsc() {
+        WordsetManager manager=new WordsetManager();
         LinearLayout llWrdSet=scanForActivity(context).findViewById(R.id.pnlWrdSetMain);
         llWrdSet.removeAllViews();
-        ArrayList<String> fileNames=new FragmentExplorerFactory().create("wordset").getNames(new PathPickerFactory().create("wordset").get(context));
+        ArrayList<String> fileNames=manager.explore(context).getNames(new PathPicker(context).get(PathPicker.WORDSET));
 
         for(int i=(fileNames.size()-1);i>=0;i--) {
             llWrdSet.addView(new ContainerWrdset(context,fileNames.get(i),true));
@@ -62,7 +63,7 @@ public class UiEdtrWrdSet {
     private void buildByCrtdDateAsc() {
         LinearLayout llWrdSet=scanForActivity(context).findViewById(R.id.pnlWrdSetMain);
         llWrdSet.removeAllViews();
-        ArrayList<String> fileNames=new FragmentExplorerFactory().create("wordset").getNames(new PathPickerFactory().create("wordset").get(context));
+        ArrayList<String> fileNames=new WordsetManager().explore(context).getNames(new PathPicker(context).get("wordset"));
 
         for(int i=0;i<fileNames.size();i++) {
             llWrdSet.addView(new ContainerWrdset(context,fileNames.get(i),true));
@@ -71,7 +72,7 @@ public class UiEdtrWrdSet {
     }
 
     private void buildByAlphAsc() {
-        ArrayList<String> list=new FragmentExplorerFactory().create("wordset").getNames(new PathPickerFactory().create("wordset").get(context));
+        ArrayList<String> list=new WordsetManager().explore(context).getNames(new PathPicker(context).get(PathPicker.WORDSET));
         Collections.sort(list, new Comparator(){
 
             @Override
@@ -88,7 +89,7 @@ public class UiEdtrWrdSet {
     }
 
     private void buildByAlphDsc() {
-        ArrayList<String> list=new FragmentExplorerFactory().create("wordset").getNames(new PathPickerFactory().create("wordset").get(context));
+        ArrayList<String> list=new WordsetManager().explore(context).getNames(new PathPicker(context).get(PathPicker.WORDSET));
         Collections.sort(list, new Comparator(){
 
             @Override

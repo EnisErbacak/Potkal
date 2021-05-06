@@ -25,6 +25,7 @@ public class FragmentWordDef extends Fragment
     private TextView tvWrdDefTop;
     private ConstraintLayout clMainWorddef;
     private ScrollView svMainWorddef;
+    private TextView tvWorddefTop;
 
     public static int ORDER_BY=0;
 
@@ -41,7 +42,7 @@ public class FragmentWordDef extends Fragment
         super.onViewCreated(view, savedInstanceState);
         tvWrdDefTop=getView().findViewById(R.id.tvWrdDefTop);
         tvWrdDefTop.setText(setName);
-        tvWrdDefTop.setTextColor(Integer.parseInt(new SPEditor().getValue(getContext(), SPEditor.COL_WORDDEF_TXT)));
+        tvWrdDefTop.setTextColor(Integer.parseInt(new SPEditor().getValue(getContext(), SPEditor.COL_WORDDEF_STATUSBAR_TXT)));
 
         clMainWorddef=view.findViewById(R.id.clMainWorddef);
         svMainWorddef=view.findViewById(R.id.svMainWorddef);

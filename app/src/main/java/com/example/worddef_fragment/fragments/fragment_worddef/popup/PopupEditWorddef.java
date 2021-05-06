@@ -16,8 +16,8 @@ import androidx.fragment.app.FragmentActivity;
 import com.example.worddef_fragment.R;
 import com.example.worddef_fragment.fragments.fragment_worddef.dialog.dialog_fragments.FragmentDialogChngWrdDef;
 import com.example.worddef_fragment.fragments.fragment_worddef.builder.ui.operator.BuilderEditor;
-import com.example.worddef_fragment.fragments.processes.operator.FragmentOperatorFactory;
-import com.example.worddef_fragment.reaction.Reaction;
+import com.example.worddef_fragment.fragments.fragment_worddef.manager.WorddefManager;
+import com.example.worddef_fragment.reaction.Reactor;
 
 public class PopupEditWorddef extends PopupMenu {
     private String setName;
@@ -75,11 +75,11 @@ public class PopupEditWorddef extends PopupMenu {
                     dialogDeleteWord.setButton(AlertDialog.BUTTON_POSITIVE, "DELETE",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    new FragmentOperatorFactory().create("worddef",context).remove(viewAnchor.getText().toString());
+                                    new WorddefManager().operate(context).remove(viewAnchor.getText().toString());
                                     //editor.delete();
                                     new BuilderEditor().getUiEditor(context, setName).updateScreen();
 
-                                    new Reaction(context).showShort("WORD IS DELETED");
+                                    new Reactor(context).showShort("WORD IS DELETED");
                                 }
                             });
 

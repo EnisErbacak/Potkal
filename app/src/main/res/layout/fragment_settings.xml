@@ -6,17 +6,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <ExpandableListView
-            android:id="@+id/elvFragmentSettings"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFFFFF"
-            android:divider="@android:color/darker_gray"
-            android:dividerHeight="0.5dp"
-            android:indicatorLeft="?android:attr/expandableListPreferredChildIndicatorRight"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:fillViewport="true">
+
+                <LinearLayout
+                    android:id="@+id/llSettings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                        <ExpandableListView
+                            android:id="@+id/elvFragmentSettings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#FFFFFF"
+                            android:divider="@android:color/darker_gray"
+                            android:dividerHeight="0.5dp"
+                            android:indicatorLeft="?android:attr/expandableListPreferredChildIndicatorRight" />
+
+
+                </LinearLayout>
+        </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

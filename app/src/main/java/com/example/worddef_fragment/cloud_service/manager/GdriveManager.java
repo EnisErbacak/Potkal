@@ -12,13 +12,12 @@ import com.example.worddef_fragment.file.controller.FileController;
 import com.example.worddef_fragment.file.operator.FileManager;
 import com.example.worddef_fragment.file.operator.FileOperator;
 import com.example.worddef_fragment.file.path_picker.PathPicker;
-import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
 import com.example.worddef_fragment.file.transporter.FileTransferFactory;
 import com.example.worddef_fragment.file.transporter.FileTransporter;
 import com.example.worddef_fragment.fragments.fragment_wordset.FragmentWordSet;
 import com.example.worddef_fragment.fragments.fragment_wordset.editor.UiEdtrWrdSet;
 import com.example.worddef_fragment.other.ScannerActivity;
-import com.example.worddef_fragment.reaction.Reaction;
+import com.example.worddef_fragment.reaction.Reactor;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
@@ -42,7 +41,7 @@ public class GdriveManager implements CloudManager{
         pb.setAlpha(1);
         FileController fileController=new FileController();
         fileTransporter=new FileTransferFactory().create("zip");
-        String zipPath=new PathPickerFactory().create("zip").get(context);
+        String zipPath=new PathPicker(context).get(PathPicker.ZIP);
 
         Token token=new Token();
         ExecutorService executor= Executors.newSingleThreadExecutor();
@@ -66,8 +65,8 @@ public class GdriveManager implements CloudManager{
                             if(clean.perform())
                                 if(upload.perform()) {
                                     System.out.println("FINISHHHHHHHH");
-                                    new FileManager().operate().deleteDir(new PathPickerFactory().create("zip").get(context)); // --removeZip
-                                    new Reaction(context).showShort(context.getResources().getString(R.string.backed_up));
+                                    new FileManager().operate().deleteDir(new PathPicker(context).get(PathPicker.ZIP)); // --removeZip
+                                    new Reactor(context).showShort(context.getResources().getString(R.string.backed_up));
                                 }
                     executor2.shutdown();
                     new ScannerActivity().scanForActivity(context).runOnUiThread(new Runnable() {
@@ -87,6 +86,7 @@ public class GdriveManager implements CloudManager{
     public boolean restore(Context context, String trgtDir) {
         pb.setAlpha(1);
         Token token=new Token();
+        PathPicker pathPicker=new PathPicker(context);
         ExecutorService executor= Executors.newSingleThreadExecutor();
 
         executor.execute(new Runnable() {
@@ -107,15 +107,15 @@ public class GdriveManager implements CloudManager{
                             fileTransporter=new FileTransferFactory().create("unzip");
                             FileController fileController=new FileController();
 
-                            String downloadPath=new PathPickerFactory().create("download").get(context);
-                            String wordSetPath=new PathPickerFactory().create("wordset").get(context);
+                            String downloadPath=pathPicker.get(PathPicker.DOWNLOAD);
+                            String wordSetPath=pathPicker.get(PathPicker.WORDSET);
                             fileController.controlDir(wordSetPath);
 
                             fileTransporter.transfer(downloadPath, wordSetPath);
                             fileOperator.deleteDir(downloadPath);
 
                             System.out.println("FINISHHHHHHHH");
-                            new Reaction(context).showShort(context.getResources().getString(R.string.restored));
+                            new Reactor(context).showShort(context.getResources().getString(R.string.restored));
                         }
                 executor2.shutdown();
                 new ScannerActivity().scanForActivity(context).runOnUiThread(new Runnable() {

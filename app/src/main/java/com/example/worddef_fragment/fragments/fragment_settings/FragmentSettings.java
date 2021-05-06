@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,8 +26,11 @@ import java.util.HashMap;
 
 public class FragmentSettings extends Fragment {
 
-    ExpandableListView expandableListView;
+    LinearLayout llSettings;
+
+    ExpandableListView expandableListView, subExpandableListView;
     ExpandableListAdapter expandableListAdapter;
+
     HashMap<String, ArrayList<ConstraintLayout>> mainList;
     ArrayList<String> titles;
     Operator operator;
@@ -49,20 +53,16 @@ public class FragmentSettings extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setCondition(getView());
+        llSettings=view.getRootView().findViewById(R.id.llSettings);
+
         elvFragmentSettings=view.findViewById(R.id.elvFragmentSettings);
-
         operator=new Operator(getContext());
-
         expandableListView = (ExpandableListView) view.findViewById(R.id.elvFragmentSettings);
-
         mainList=operator.getMainList();
         titles=new ArrayList<String>(mainList.keySet());
-
         expandableListAdapter=new ExpandableListAdapter(getContext(),
                 mainList);
-
         expandableListView.setAdapter(expandableListAdapter);
-
         setStyle();
     }
 

@@ -4,10 +4,11 @@ import android.widget.ProgressBar;
 
 public class CloudManagerFactory {
 
+    public static final String GDRIVE="gdrive";
     public CloudManager create(String managerName, ProgressBar pb) {
         CloudManager cloudManager;
         switch (managerName.toLowerCase()) {
-            case  "gdrive":
+            case  GDRIVE:
                 cloudManager=new GdriveManager(pb);
                 break;
             default:

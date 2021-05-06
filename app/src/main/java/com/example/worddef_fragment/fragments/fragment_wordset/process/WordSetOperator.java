@@ -1,16 +1,16 @@
-package com.example.worddef_fragment.fragments.processes.operator;
+package com.example.worddef_fragment.fragments.fragment_wordset.process;
 
 import android.content.Context;
 
 import com.example.worddef_fragment.file.operator.FileManager;
-import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
+import com.example.worddef_fragment.file.path_picker.PathPicker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 
-public class WordSetOperator implements FragmentOperator {
+public class WordSetOperator {
 
     private FileManager fileManager;
     private Context context;
@@ -21,13 +21,11 @@ public class WordSetOperator implements FragmentOperator {
         initialize();
     }
 
-    @Override
     public void initialize() {
         this.fileManager=new FileManager();
-        dirWordSet=new PathPickerFactory().create("wordset").get(context);
+        dirWordSet=new PathPicker(context).get(PathPicker.WORDSET);
     }
 
-    @Override
     public JSONObject get(String name) {
         JSONObject jsonObject=null;
         try {
@@ -38,7 +36,6 @@ public class WordSetOperator implements FragmentOperator {
         return jsonObject;
     }
 
-    @Override
     public boolean add(String name, JSONObject jObj) {
         boolean result=false;
         if(! fileManager.explore().checkDuplication(dirWordSet,name)) {
@@ -48,12 +45,10 @@ public class WordSetOperator implements FragmentOperator {
         return result;
     }
 
-    @Override
     public void remove(String name) {
         fileManager.operate().delete(dirWordSet + File.separator+name);
     }
 
-    @Override
     public boolean rename(String nameOld, String nameNew) {
         boolean result=false;
         if(! fileManager.explore().checkDuplication(dirWordSet, nameNew)) {
@@ -62,7 +57,6 @@ public class WordSetOperator implements FragmentOperator {
         return result;
     }
 
-    @Override
     public void update(String name, JSONObject jsonObject) {
         fileManager.operate().write(dirWordSet + File.separator+name, jsonObject.toString());
     }

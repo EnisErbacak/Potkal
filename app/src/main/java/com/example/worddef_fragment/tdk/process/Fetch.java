@@ -1,7 +1,5 @@
 package com.example.worddef_fragment.tdk.process;
 
-import com.example.worddef_fragment.reaction.Reaction;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 

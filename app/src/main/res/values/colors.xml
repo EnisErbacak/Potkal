@@ -5,6 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
 
     <color name="col_black">#000000</color>
+    <color name="white">#ffffff</color>
 
     <color name="col_wordset">#C7E6FB</color>
     <color name="col_wordset_bg">#202223</color>
@@ -19,7 +20,9 @@
     <color name="col_settings_bg">#FFFFFF</color>
     <color name="dialog_bg">#2F7CCD</color>
 
-    <color name="choice_tint">#2196F3</color>
-
+    <color name="col_test_bg">#009688</color>
+    <color name="col_test_score_bg">#FF9800</color>
+    <color name="col_test_question_bg">#FFEB3B</color>
+    <color name="col_test_choice_bg">#2196F3</color>
 
 </resources>

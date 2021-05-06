@@ -1,19 +1,22 @@
-package com.example.worddef_fragment.fragments.processes.operator;
+package com.example.worddef_fragment.fragments.fragment_worddef.process;
 
 import android.content.Context;
 
 import com.example.worddef_fragment.file.operator.FileManager;
-import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
+import com.example.worddef_fragment.file.path_picker.PathPicker;
 import com.example.worddef_fragment.file.shared_preferences.SPEditor;
 import com.example.worddef_fragment.fragments.fragment_worddef.FragmentWordDef;
-import com.example.worddef_fragment.fragments.processes.explorer.FragmentExplorerFactory;
+import com.example.worddef_fragment.fragments.fragment_worddef.builder.data.Word;
+import com.example.worddef_fragment.fragments.fragment_worddef.builder.data.operator.WordOperator;
+import com.example.worddef_fragment.fragments.fragment_worddef.manager.WorddefManager;
+import com.example.worddef_fragment.fragments.fragment_wordset.manager.WordsetManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 
-public class WordDefOperator implements FragmentOperator {
+public class WordDefOperator {
     private String setName;
     private FileManager fileManager;
     private Context context;
@@ -24,11 +27,10 @@ public class WordDefOperator implements FragmentOperator {
         this.setName=FragmentWordDef.setName;
         this.context=context;
         this.fileManager=new FileManager();
-        this.dirWordSet=new PathPickerFactory().create("wordset").get(context);
+        this.dirWordSet=new PathPicker(context).get(PathPicker.WORDSET);
         initialize();
     }
 
-    @Override
     public void initialize() {
         try{
             jObjMain= new JSONObject(fileManager.operate().read(dirWordSet + File.separator + setName));
@@ -39,7 +41,7 @@ public class WordDefOperator implements FragmentOperator {
     }
 
     // RETURNS WORD-DEFINITION PAIR.
-    @Override
+
     public JSONObject get(String name) {
         JSONObject job;
         try{
@@ -52,15 +54,15 @@ public class WordDefOperator implements FragmentOperator {
         return job;
     }
 
-    @Override
     public boolean add(String name, JSONObject jObj) {
         boolean result=false;
         String checkType=new SPEditor().getValue(context, SPEditor.DUPLICATION_CHCK);
         String dir2Srch=dirWordSet+File.separator+setName;
+        WorddefManager manager=new WorddefManager();
 
         switch (checkType) {
             case SPEditor.DUPLICATION_CHCK_CURRENT:
-                if(new FragmentExplorerFactory().create("worddef").checkDuplication(dir2Srch, name)) {
+                if(manager.explore(context).checkDuplication(dir2Srch, name)) {
                     try {
                         jObjMain.put(name, jObj);
                         update(setName, jObjMain);
@@ -73,7 +75,7 @@ public class WordDefOperator implements FragmentOperator {
 
                 break;
             case SPEditor.DUPLICATION_CHCK_ALL:
-                if(new FragmentExplorerFactory().createImproved("worddef").checkDuplicationForAll(context,dir2Srch, name)) {
+                if(manager.explore(context).checkDuplicationForAll(context, name)) {
                     try {
                         jObjMain.put(name, jObj);
                         update(setName, jObjMain);
@@ -88,37 +90,36 @@ public class WordDefOperator implements FragmentOperator {
         return result;
     }
 
-    @Override
     public void remove(String name) {
         jObjMain.remove(name);
         update(setName, jObjMain);
     }
 
-    @Override
-    public boolean rename(String nameOld, String nameNew) {
-        boolean result=false;
-        String dir2Srch=dirWordSet+File.separator+setName;
-            try {
-                if(new FragmentExplorerFactory().create("worddef").checkDuplication(dir2Srch, nameNew)) {
-                    JSONObject newJson=get(nameOld);
-                    jObjMain.remove(nameOld);
-                    jObjMain.put(nameNew, newJson);
-                    System.out.println("**********CHANGED");
-                    update(setName, jObjMain);
-                } else {
-                    // THIS WORD IS ALREADY EXISTS.
-                    System.out.println("**********THIS WORD IS ALREADY EXISTS");
-                }
-
-                result=true;
-            }catch (JSONException je) {je.printStackTrace();}
-
-        return result;
+    public void update(String name, JSONObject job) {
+        new WordsetManager().operate(context).update(name,job);
     }
 
-    @Override
-    public void update(String name, JSONObject job) {
-        new FragmentOperatorFactory().create("wordset", context).update(name,job);
-        //fileExplorer.write2SetFile(context,setName,jObjMain.toString());
+    public boolean change(String oldName,String newName, Word wordObj) {
+        boolean result = false;
+        try {
+            if(newName.equals(oldName)) {
+                jObjMain.remove(oldName);
+                //new WordsetManager().operate(context).update(setName, jObjMain);
+                jObjMain.put(newName,new WordOperator().convert2Json(wordObj));
+                new WordsetManager().operate(context).update(setName, jObjMain);
+                result=true;
+            }
+            else {
+                if(new WorddefManager().explore(context).checkDuplicationForAll(context, newName)) {
+                    jObjMain.remove(oldName);
+                    jObjMain.put(newName,new WordOperator().convert2Json(wordObj));
+                    new WordsetManager().operate(context).update(setName, jObjMain);
+                    result=true;
+                }
+            }
+        }catch (JSONException je) {
+            je.printStackTrace();
+        }
+        return result;
     }
 }

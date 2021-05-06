@@ -18,8 +18,8 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import com.example.worddef_fragment.R;
 import com.example.worddef_fragment.fragments.fragment_wordset.FragmentWordSet;
 import com.example.worddef_fragment.fragments.fragment_wordset.editor.UiEdtrWrdSet;
-import com.example.worddef_fragment.fragments.processes.operator.FragmentOperatorFactory;
-import com.example.worddef_fragment.reaction.Reaction;
+import com.example.worddef_fragment.fragments.fragment_wordset.manager.WordsetManager;
+import com.example.worddef_fragment.reaction.Reactor;
 
 import org.json.JSONObject;
 
@@ -103,15 +103,15 @@ public class FragmentAddSet extends AppCompatDialogFragment {
             wordSetName=edtTxtWrdSetName.getText().toString();
 
             if(!isEmpty(wordSetName)) {
-                if(new FragmentOperatorFactory().create("wordset",getContext()).add(wordSetName, new JSONObject())) {
+                if(new WordsetManager().operate(getContext()).add(wordSetName, new JSONObject())) {
                     FragmentAddSet.this.dismiss();
                     new UiEdtrWrdSet(getContext()).updateScrn(FragmentWordSet.ORDER_BY);
                 } else {
-                    new Reaction(getContext()).showShort(view.getContext().getResources().getString(R.string.set_exists));
+                    new Reactor(getContext()).showShort(view.getContext().getResources().getString(R.string.set_exists));
                 }
             }
             else
-                new Reaction(getContext()).showShort("PLEASE INPUT A NAME!");
+                new Reactor(getContext()).showShort("PLEASE INPUT A NAME!");
         }
 
         private boolean isEmpty(String txt) {

@@ -11,21 +11,22 @@ import com.example.worddef_fragment.other.PixelConverter;
 
 public class SuperTvRght extends androidx.appcompat.widget.AppCompatTextView {
 
-    private LinearLayout.LayoutParams lp;
+   private PixelConverter pixelConverter;
 
     private final int MTCH_PRNT= LinearLayout.LayoutParams.MATCH_PARENT;
     private final int WRP_CNTNT= LinearLayout.LayoutParams.WRAP_CONTENT;
 
     private final int COL_TXT= Color.BLACK;
-    private final int SIZE_TXT= PixelConverter.pix2Sp(getContext(),5);
+    private final int SIZE_TXT= 5;
 
     private String txt;
 
     public SuperTvRght(@NonNull Context context, String txt) {
         super(context);
-        onCreate();
         setText(txt);
         this.txt=txt;
+        pixelConverter=new PixelConverter(context);
+        onCreate();
     }
 
     private void onCreate() {
@@ -33,11 +34,10 @@ public class SuperTvRght extends androidx.appcompat.widget.AppCompatTextView {
     }
 
     private void setView() {
-        lp=new LinearLayout.LayoutParams(MTCH_PRNT,WRP_CNTNT);
+        setLayoutParams(new LinearLayout.LayoutParams(MTCH_PRNT,WRP_CNTNT));
         setTextColor(COL_TXT);
-        setTextSize(SIZE_TXT);
+        setTextSize(pixelConverter.sp2Px(SIZE_TXT));
         setTypeface(getTypeface(), Typeface.BOLD);
-        setLayoutParams(lp);
         setTextAlignment(TEXT_ALIGNMENT_VIEW_END);
     }
 

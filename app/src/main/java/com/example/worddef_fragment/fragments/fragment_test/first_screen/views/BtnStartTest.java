@@ -10,11 +10,11 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.example.worddef_fragment.R;
 import com.example.worddef_fragment.file.operator.FileManager;
-import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
+import com.example.worddef_fragment.file.path_picker.PathPicker;
 import com.example.worddef_fragment.fragments.fragment_test.first_screen.views.container.ContainerTestWordset;
 import com.example.worddef_fragment.fragments.fragment_test.test_screen.FragmentTest;
 import com.example.worddef_fragment.fragments.fragment_test.test_screen.test_process.question_creator.QuestionCreator;
-import com.example.worddef_fragment.reaction.Reaction;
+import com.example.worddef_fragment.reaction.Reactor;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,9 +40,9 @@ public class BtnStartTest extends androidx.appcompat.widget.AppCompatButton {
                 RadioGroup rdGrpQType=view.getRootView().findViewById(R.id.rdGrpQType);
 
                 // getSetNames(ll).size must be greater than 4 at least
-                Reaction reaction=new Reaction(context);
-                if(getSetNames(ll).size()==0) reaction.showShort(getContext().getResources().getString(R.string.pls_choose_set));
-                else if(! checkSet(ll)) reaction.showShort(context.getResources().getString(R.string.pls_choose_safe_set));
+                Reactor reactor =new Reactor(context);
+                if(getSetNames(ll).size()==0) reactor.showShort(getContext().getResources().getString(R.string.pls_choose_set));
+                else if(! checkSet(ll)) reactor.showShort(context.getResources().getString(R.string.pls_choose_safe_set));
                 else ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.containerActivityMain, new FragmentTest(getSetNames(ll), getQType(rdGrpQType.getCheckedRadioButtonId()))).commit();
             }
         });
@@ -88,7 +88,7 @@ public class BtnStartTest extends androidx.appcompat.widget.AppCompatButton {
         FileManager fileManager=new FileManager();
         for(int i=0;i<setNameList.size();i++) {
             try {
-                jObjList.add(new JSONObject(fileManager.operate().read(new PathPickerFactory().create("wordset").get(context) + File.separator+ setNameList.get(i))));
+                jObjList.add(new JSONObject(fileManager.operate().read(new PathPicker(context).get(PathPicker.WORDSET) + File.separator+ setNameList.get(i))));
             } catch (JSONException jsonException) {
                 jsonException.printStackTrace();
             }

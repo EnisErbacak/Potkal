@@ -14,11 +14,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 
 import com.example.worddef_fragment.file.operator.FileManager;
-import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
+import com.example.worddef_fragment.file.path_picker.PathPicker;
 import com.example.worddef_fragment.fragments.fragment_wordset.FragmentWordSet;
 import com.example.worddef_fragment.fragments.fragment_wordset.editor.UiEdtrWrdSet;
+import com.example.worddef_fragment.fragments.fragment_wordset.manager.WordsetManager;
 import com.example.worddef_fragment.fragments.fragment_wordset.views.txt_view.TvWordsetLeft;
-import com.example.worddef_fragment.fragments.processes.operator.FragmentOperatorFactory;
 
 public class PopupWordSetEdit extends PopupMenu
 {
@@ -56,10 +56,10 @@ class PopupWordSetEditLstnr implements OnMenuItemClickListener {
                                 String oldWordSetName=view.getWordsetName();
                                 String newWordSetName=editTextsetName.getText().toString();
 
-                                if(!new FileManager().explore().checkDuplication(new PathPickerFactory().create("wordset").get(view.getContext()), newWordSetName)) {
+                                if(!new FileManager().explore().checkDuplication(new PathPicker(view.getContext()).get(PathPicker.WORDSET), newWordSetName)) {
                                     //MainFileOperator.getInstance(view.getContext()).renameFile(view.getSetName(),editTextsetName.getText().toString());
                                     //new WordSetEditor2(view.getContext()).rename(oldWordSetName,newWordSetName);
-                                    new FragmentOperatorFactory().create("wordset",view.getContext())
+                                    new WordsetManager().operate(view.getContext())
                                             .rename(oldWordSetName, newWordSetName);
                                     view.setText(editTextsetName.getText().toString());
                                 }
@@ -87,7 +87,7 @@ class PopupWordSetEditLstnr implements OnMenuItemClickListener {
                 dialogDeleteSet.setButton(AlertDialog.BUTTON_POSITIVE, "DELETE",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                new FragmentOperatorFactory().create("wordset", view.getContext()).remove(view.getWordsetName());
+                                new WordsetManager().operate(view.getContext()).remove(view.getWordsetName());
                                 //editor.buildByCrtdDateDsc();
                                 new UiEdtrWrdSet(view.getContext()).updateScrn(FragmentWordSet.ORDER_BY);
                             }

@@ -6,7 +6,7 @@ import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 
 import com.example.worddef_fragment.file.shared_preferences.SPEditor;
-import com.example.worddef_fragment.fragments.fragment_settings.element.spinners.Listener;
+import com.example.worddef_fragment.fragments.fragment_settings.element.spinners.SpinnerOnSelectedListener;
 
 public class SpinnerLang  extends androidx.appcompat.widget.AppCompatSpinner{
     private Context context;
@@ -43,7 +43,7 @@ public class SpinnerLang  extends androidx.appcompat.widget.AppCompatSpinner{
 
     void onCreate() {
         initialize();
-        setOnItemSelectedListener(new Listener(sharedPrefKey,codes));
+        setOnItemSelectedListener(new SpinnerOnSelectedListener(sharedPrefKey,codes));
     }
 
     public void initialize() {

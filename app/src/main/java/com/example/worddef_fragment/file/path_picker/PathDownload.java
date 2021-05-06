@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.io.File;
 
-public class PathDownload implements PathPicker{
+public class PathDownload implements CustomPath{
     private final String FOLDERNAME="download";
 
     @Override

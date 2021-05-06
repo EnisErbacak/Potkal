@@ -1,10 +1,9 @@
 package com.example.worddef_fragment.fragments.fragment_test.test_screen;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -27,23 +26,27 @@ import com.example.worddef_fragment.fragments.fragment_test.test_screen.test_pro
 import com.example.worddef_fragment.fragments.fragment_test.test_screen.test_process.question_creator.TestPool;
 import com.example.worddef_fragment.fragments.fragment_test.test_screen.test_process.TestManager;
 import com.example.worddef_fragment.fragments.fragment_test.test_screen.views.buttons.ButtonChoice;
+import com.example.worddef_fragment.other.PixelConverter;
 
 import java.util.ArrayList;
 
 public class FragmentTest extends Fragment {
+    private SPEditor spEditor;
     private ArrayList<String> setNames;
     private QuestionCreator questionCreator;
     private Button btnFinishTest;
-    private ConstraintLayout clTestMain;
+    private ConstraintLayout clTestMain, clTestScore;
+
     private ScrollView svTestQuestion, svTestChoice;
     TestPool testPool;
     ButtonChoice[] btnChArr;
-    private TextView tvTestScoreCorrect, tvTestScoreIncorrect;
+    private TextView tvTestScoreCorrect, tvTestScoreIncorrect, tvTestScoreCorrectStr, tvTestScoreIncorrectStr, tvTestQuestion;
     private int questionChoiceType;
 
     public FragmentTest(ArrayList<String> setNames, int questionChoiceType) {
         this.setNames=setNames;
         this.questionChoiceType=questionChoiceType;
+        spEditor=new SPEditor();
     }
 
     @Override
@@ -61,11 +64,19 @@ public class FragmentTest extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //btnTestPrevScrn=view.findViewById(R.id.btnTestPrevScrn);
-        //btnTestNextScrn=view.findViewById(R.id.btnTestNextScrn);
         clTestMain=view.findViewById(R.id.clTestMain);
-        tvTestScoreCorrect=view.findViewById(R.id.tvTestScoreCrrct);
-        tvTestScoreIncorrect=view.findViewById(R.id.tvTestScoreIncrrct);
+        clTestScore=view.findViewById(R.id.clTestScore);
+        svTestChoice=view.findViewById(R.id.svTestChoice);
+        svTestQuestion=view.findViewById(R.id.svTestQuestion);
+
+        tvTestScoreCorrect=view.findViewById(R.id.tvTestScoreCorrect);
+        tvTestScoreIncorrect=view.findViewById(R.id.tvTestScoreIncorrect);
+
+        tvTestScoreCorrectStr =view.findViewById(R.id.tvTestScoreCorrectStr);
+        tvTestScoreIncorrectStr =view.findViewById(R.id.tvTestScoreIncorrectStr);
+
+        tvTestQuestion=view.findViewById(R.id.tvTestQuestion);
+
         btnFinishTest=view.findViewById(R.id.btnTestFinish);
         btnFinishTest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,15 +85,13 @@ public class FragmentTest extends Fragment {
             }
         });
 
-
         ButtonChoice btnCh1=view.findViewById(R.id.btnTestCh1);
         ButtonChoice btnCh2=view.findViewById(R.id.btnTestCh2);
         ButtonChoice btnCh3=view.findViewById(R.id.btnTestCh3);
         ButtonChoice btnCh4=view.findViewById(R.id.btnTestCh4);
 
         btnChArr=new ButtonChoice[]{btnCh1, btnCh2, btnCh3, btnCh4};
-        svTestChoice=view.findViewById(R.id.svTestChoice);
-        svTestQuestion=view.findViewById(R.id.svTestQuestion);
+
 
 
         questionCreator=new QuestionCreator(getActivity().getApplicationContext(), questionChoiceType);
@@ -91,21 +100,6 @@ public class FragmentTest extends Fragment {
         testManager.createTest();
         testManager.startTest();
         setSwing(view.getContext(), testManager);
-
-        /*
-        btnTestPrevScrn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                testManager.prevScreen();
-            }
-        });
-        btnTestNextScrn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                testManager.nextScreen();
-            }
-        });
-         */
 
         setStyle(getContext());
     }
@@ -116,13 +110,26 @@ public class FragmentTest extends Fragment {
 
     private void setStyle(Context context) {
         SPEditor spEditor=new SPEditor();
-//        btnTestNextScrn.setBackgroundColor(Color.parseColor("#B4DDFF"));
-  //      btnTestPrevScrn.setBackgroundColor(Color.parseColor("#B4DDFF"));
+        PixelConverter pixelConverter=new PixelConverter(context);
+        clTestMain.setBackgroundColor(Integer.parseInt(spEditor.getValue(context, SPEditor.COL_TEST_BG)));
+        clTestScore.setBackgroundColor(Integer.parseInt(spEditor.getValue(context, SPEditor.COL_TEST_SCORE_BG)));
+        svTestQuestion.setBackgroundColor(Integer.parseInt(spEditor.getValue(context, SPEditor.COL_TEST_QUESTION_BG)));
 
-        clTestMain.setBackgroundColor(Color.parseColor("#003366"));
 
-        //svTestQuestion.setBackgroundColor(Color.parseColor("#1565C0"));
-        //svTestChoice.setBackgroundColor(Color.parseColor("#1565C0"));
+        tvTestQuestion.setTextColor(Integer.parseInt(spEditor.getValue(context, SPEditor.COL_TEST_QUESTION_TXT)));
+        tvTestScoreCorrect.setTextColor(Integer.parseInt(spEditor.getValue(context, SPEditor.COL_TEST_SCORE_TXT)));
+        tvTestScoreIncorrect.setTextColor(Integer.parseInt(spEditor.getValue(context, SPEditor.COL_TEST_SCORE_TXT)));
+        tvTestScoreCorrectStr.setTextColor(Integer.parseInt(spEditor.getValue(context, SPEditor.COL_TEST_SCORE_TXT)));
+        tvTestScoreIncorrectStr.setTextColor(Integer.parseInt(spEditor.getValue(context, SPEditor.COL_TEST_SCORE_TXT)));
+
+        tvTestQuestion.setTextSize(Integer.parseInt(spEditor.getValue(context, SPEditor.TXT_SIZE_TEST_QUESTION)));
+
+        for(Button btn: btnChArr) {
+            btn.setBackgroundColor(Integer.parseInt(spEditor.getValue(context, SPEditor.COL_TEST_CHOICE_BG)));
+            btn.setTextColor(Integer.parseInt(spEditor.getValue(context, SPEditor.COL_TEST_CHOICE_TXT)));
+            btn.setTextSize(TypedValue.COMPLEX_UNIT_SP, Integer.parseInt(spEditor.getValue(context, SPEditor.TXT_SIZE_TEST_CHOICE)));
+            }
+
     }
 
     private void setCondition(View view) {

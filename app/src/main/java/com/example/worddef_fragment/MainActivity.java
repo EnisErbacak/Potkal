@@ -11,7 +11,7 @@ import android.os.LocaleList;
 import android.widget.Toast;
 
 import com.example.worddef_fragment.file.operator.FileManager;
-import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
+import com.example.worddef_fragment.file.path_picker.PathPicker;
 import com.example.worddef_fragment.file.shared_preferences.SPEditor;
 import com.example.worddef_fragment.fragments.fragment_wordset.FragmentWordSet;
 
@@ -30,7 +30,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void setCondition() {
-        new FileManager().operate().createDir(new PathPickerFactory().create("wordset").get(getApplicationContext()));
+        new FileManager().operate().createDir(new PathPicker(getApplicationContext()).get(PathPicker.WORDSET));
     }
 
     private void startFragment(Bundle savedInstanceState) {

@@ -8,33 +8,34 @@ import android.view.View;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
-import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
+import com.example.worddef_fragment.file.path_picker.PathPicker;
 import com.example.worddef_fragment.file.shared_preferences.SPEditor;
+import com.example.worddef_fragment.fragments.fragment_worddef.manager.WorddefManager;
 import com.example.worddef_fragment.fragments.fragment_wordset.views.txt_view.SuperTvRght;
 import com.example.worddef_fragment.fragments.fragment_wordset.views.txt_view.TvWordCount;
 import com.example.worddef_fragment.fragments.fragment_wordset.views.txt_view.TvWordsetLeft;
-import com.example.worddef_fragment.fragments.processes.explorer.FragmentExplorerFactory;
 import com.example.worddef_fragment.other.PixelConverter;
 
 import java.io.File;
 
 //********REFACTORED
 public class ContainerWrdset extends ConstraintLayout {
+    private PixelConverter pixelConverter;
     // Margin values
-    private final int VAL_MRGN_LFT= PixelConverter.pix2Dip(getContext(),10);
-    private final int VAL_MRGN_TOP=PixelConverter.pix2Dip(getContext(),7);
-    private final int VAL_MRGN_RGHT=PixelConverter.pix2Dip(getContext(),10);
-    private final int VAL_MRGN_BTTM=PixelConverter.pix2Dip(getContext(),7);
+    private final int VAL_MRGN_LFT= 10;
+    private final int VAL_MRGN_TOP=7;
+    private final int VAL_MRGN_RGHT= 10;
+    private final int VAL_MRGN_BTTM=7;
 
     // Padding values
-    private final int VAL_PAD_LFT=PixelConverter.pix2Dip(getContext(),5);
-    private final int VAL_PAD_TOP=PixelConverter.pix2Dip(getContext(),7);
-    private final int VAL_PAD_RGHT=PixelConverter.pix2Dip(getContext(),0);
-    private final int VAL_PAD_BTTM=PixelConverter.pix2Dip(getContext(),7);
+    private final int VAL_PAD_LFT= 5;
+    private final int VAL_PAD_TOP= 7;
+    private final int VAL_PAD_RGHT= 0;
+    private final int VAL_PAD_BTTM= 7;
 
     private  int COL_BG;
 
-    private final int VAL_CRNR_RDS=PixelConverter.pix2Dip(getContext(),15);
+    private final int VAL_CRNR_RDS= 15;
 
     private ConstraintSet constraintSet;
     private LayoutParams lp;
@@ -50,6 +51,7 @@ public class ContainerWrdset extends ConstraintLayout {
         super(context);
         this.setName=setName;
         this.attachListener=attachListener;
+        pixelConverter=new PixelConverter(context);
         onCreate(context);
     }
 
@@ -61,7 +63,7 @@ public class ContainerWrdset extends ConstraintLayout {
         txtViewWrdSet=new TvWordsetLeft(getContext(),setName, attachListener);
 
         containerInnerLft =new ContainerInnerLft(getContext(),new View[] {txtViewWrdSet});
-        countWord= new FragmentExplorerFactory().create("worddef").getCount(new PathPickerFactory().create("wordset").get(getContext())+ File.separator +setName );
+        countWord= new WorddefManager().explore(context).getCount(new PathPicker(context).get(PathPicker.WORDSET)+ File.separator +setName );
         containerInnerRght =new ContainerInnerRght(getContext(),new SuperTvRght[]{new TvWordCount(getContext(),countWord)});
         setStyle();
     }
@@ -69,11 +71,11 @@ public class ContainerWrdset extends ConstraintLayout {
     public void setStyle() {
         lp=new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 
-        setLytPrms(lp);
-        setMargin(lp);
-        setPad();
+        setLayoutParams(lp);
+        lp.setMargins(pixelConverter.dp2Px(VAL_MRGN_LFT), pixelConverter.dp2Px(VAL_MRGN_TOP), pixelConverter.dp2Px(VAL_MRGN_RGHT), pixelConverter.dp2Px(VAL_MRGN_BTTM));
+        setPadding(pixelConverter.dp2Px(VAL_PAD_LFT), pixelConverter.dp2Px(VAL_PAD_TOP), pixelConverter.dp2Px(VAL_PAD_RGHT), pixelConverter.dp2Px(VAL_PAD_BTTM));
 
-        setBgShape(getGradientDrawable(COL_BG,VAL_CRNR_RDS));
+        setBackground(getGradientDrawable(COL_BG, pixelConverter.dp2Px(VAL_CRNR_RDS)));
         locateSubPanels();
     }
 
@@ -104,20 +106,6 @@ public class ContainerWrdset extends ConstraintLayout {
         gradientDrawable.setColor(color);
         gradientDrawable.setCornerRadius(radius);
         return gradientDrawable;
-    }
-
-    private void setBgShape(Drawable shape){
-        setBackground(shape);
-    }
-    private void setLytPrms(LayoutParams lp) {
-        setLayoutParams(lp);
-    }
-    private void setMargin(LayoutParams lp) {
-        lp.setMargins(VAL_MRGN_LFT,VAL_MRGN_TOP,VAL_MRGN_RGHT,VAL_MRGN_BTTM);
-    }
-
-    private void setPad() {
-        setPadding(VAL_PAD_LFT,VAL_PAD_TOP,VAL_PAD_RGHT,VAL_PAD_BTTM);
     }
 
     public ContainerInnerRght getContainerInnerRght() {

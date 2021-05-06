@@ -20,7 +20,7 @@ import com.example.worddef_fragment.fragments.fragment_test.FragmentListenerBack
 import com.example.worddef_fragment.fragments.fragment_wordset.FragmentWordSet;
 
 public class FragmentTestFirst extends Fragment {
-    private LinearLayout llTestFirstSets, llTesFirsttUpper, llTestFirstLower;
+    private LinearLayout llTestFirstSets, llTestFirstUpper, llTestFirstLower;
     private ConstraintLayout clTestFirstMain;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class FragmentTestFirst extends Fragment {
         new CreateFirstTestScreen().create(getContext(), llTestFirstSets);
 
         clTestFirstMain=view.findViewById(R.id.clTestFirstMain);
-        llTesFirsttUpper=view.findViewById(R.id.llTestFirstUpper);
+        llTestFirstUpper =view.findViewById(R.id.llTestFirstUpper);
         llTestFirstLower=view.findViewById(R.id.llTestFirstLower);
 
         setStyle(getContext());
@@ -49,8 +49,8 @@ public class FragmentTestFirst extends Fragment {
     private void setStyle(Context context) {
         SPEditor spEditor=new SPEditor();
         clTestFirstMain.setBackgroundColor(Color.parseColor("#FF000000"));
-        llTesFirsttUpper.getBackground().setColorFilter(Color.parseColor("#1565C0"), PorterDuff.Mode.SRC_ATOP);
-        llTestFirstLower.getBackground().setColorFilter(Color.parseColor("#1565C0"), PorterDuff.Mode.SRC_ATOP);
+//        llTestFirstUpper.getBackground().setColorFilter(Color.parseColor("#1565C0"), PorterDuff.Mode.SRC_ATOP);
+  //      llTestFirstLower.getBackground().setColorFilter(Color.parseColor("#1565C0"), PorterDuff.Mode.SRC_ATOP);
 
     }
 

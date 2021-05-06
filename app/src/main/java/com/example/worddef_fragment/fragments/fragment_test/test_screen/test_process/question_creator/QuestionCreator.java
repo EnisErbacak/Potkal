@@ -3,7 +3,7 @@ package com.example.worddef_fragment.fragments.fragment_test.test_screen.test_pr
 import android.content.Context;
 
 import com.example.worddef_fragment.file.operator.FileManager;
-import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
+import com.example.worddef_fragment.file.path_picker.PathPicker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -81,7 +81,7 @@ public class QuestionCreator {
         FileManager fileManager=new FileManager();
         for(int i=0;i<setNameList.size();i++) {
             try {
-                jObjList.add(new JSONObject(fileManager.operate().read(new PathPickerFactory().create("wordset").get(context) + File.separator+ setNameList.get(i))));
+                jObjList.add(new JSONObject(fileManager.operate().read(new PathPicker(context).get(PathPicker.WORDSET) + File.separator+ setNameList.get(i))));
             } catch (JSONException jsonException) {
                 jsonException.printStackTrace();
             }

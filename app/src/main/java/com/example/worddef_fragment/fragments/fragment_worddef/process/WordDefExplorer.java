@@ -1,13 +1,12 @@
-package com.example.worddef_fragment.fragments.processes.explorer;
+package com.example.worddef_fragment.fragments.fragment_worddef.process;
 
 import android.content.Context;
-import android.print.PrintAttributes;
 
 import com.example.worddef_fragment.R;
 import com.example.worddef_fragment.file.operator.FileManager;
-import com.example.worddef_fragment.file.path_picker.PathPickerFactory;
-import com.example.worddef_fragment.file.shared_preferences.SPEditor;
-import com.example.worddef_fragment.reaction.Reaction;
+import com.example.worddef_fragment.file.path_picker.PathPicker;
+import com.example.worddef_fragment.fragments.fragment_wordset.process.WordSetExplorer;
+import com.example.worddef_fragment.reaction.Reactor;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,13 +15,13 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class WordDefExplorer implements FragmentExplorer, ImprovedWorddefExplorer {
+public class WordDefExplorer {
     private FileManager fileManager;
     public WordDefExplorer() {
         this.fileManager=new FileManager();
     }
 
-    @Override
+
     public int getCount(String path) {
         int result=-1;
         try {
@@ -35,7 +34,6 @@ public class WordDefExplorer implements FragmentExplorer, ImprovedWorddefExplore
         return result;
     }
 
-    @Override
     public boolean checkDuplication(String dirOrFile, String name) {
         boolean result=false;
         try {
@@ -49,7 +47,6 @@ public class WordDefExplorer implements FragmentExplorer, ImprovedWorddefExplore
         return result;
     }
 
-    @Override
     public ArrayList<String> getNames(String dirOrFile) {
         ArrayList<String> names=new ArrayList<String>();
         try {
@@ -64,18 +61,16 @@ public class WordDefExplorer implements FragmentExplorer, ImprovedWorddefExplore
         return names;
     }
 
-    @Override
-    public boolean checkDuplicationForAll(Context context, String dirOrFile, String name) {
+    public boolean checkDuplicationForAll(Context context, String name) {
         boolean result=true;
-        ArrayList<String> wordsetList=new WordSetExplorer().getNames(new PathPickerFactory().create("wordset").get(context));
-        String dir=new PathPickerFactory().create("wordset").get(context);
-        System.out.println("asdklfjaşsldjf");
+        PathPicker pathPicker=new PathPicker(context);
+        ArrayList<String> wordsetList=new WordSetExplorer().getNames(pathPicker.get(PathPicker.WORDSET));
+        String dir=pathPicker.get(PathPicker.WORDSET);
         for(String str: wordsetList) {
 
             for(String str2: getNames(dir + File.separator+ str)) {
-
                 if(str2.equals(name)) {
-                        new Reaction(context).showShort(context.getResources().getString(R.string.word_exists_in)+ "\""+str+"\"");
+                        new Reactor(context).showShort(context.getResources().getString(R.string.word_exists_in)+ "\""+str+"\"");
                         result=false;
                     }
             }

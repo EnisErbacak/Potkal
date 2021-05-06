@@ -68,5 +68,6 @@ public class FragmentWordSet extends Fragment
         SPEditor spEditor=new SPEditor();
         clMain.setBackgroundColor(Integer.parseInt(spEditor.getValue(context, SPEditor.COL_WORDSET_STATUSBAR)));
         svSub.setBackgroundColor(Integer.parseInt(spEditor.getValue(context, SPEditor.COL_WORDSET_BG)));
+        tvPotkalWordset.setTextColor(Integer.parseInt(spEditor.getValue(context, SPEditor.COL_WORDSET_STATUSBAR_TXT)));
     }
 }

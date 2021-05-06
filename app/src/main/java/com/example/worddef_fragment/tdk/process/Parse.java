@@ -28,11 +28,6 @@ public class Parse {
                 e.printStackTrace();
             }
         }
-        /*
-        for(TdkWord tdkWord: tdkWordList)
-            tdkWord.display();
-
-         */
         return tdkWordList;
     }
 

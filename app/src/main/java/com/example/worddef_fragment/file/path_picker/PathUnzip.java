@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.io.File;
 
-public class PathUnzip implements PathPicker{
+public class PathUnzip implements CustomPath{
     private final String FOLDERNAME="Unzip Files";
 
     @Override

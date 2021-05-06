@@ -7,12 +7,12 @@ import android.widget.TextView;
 import com.example.worddef_fragment.fragments.fragment_worddef.views.txtView.TvLang;
 import com.example.worddef_fragment.fragments.fragment_worddef.views.txtView.TvWord;
 
-public class ContainerUpper extends LinearLayout {
+public class LlContainerUpper extends LinearLayout {
     private String strWord, strLang;
     TextView tvWord, tvLang;
     private Context context;
 
-    public ContainerUpper(Context context, String strWord, String  strLang) {
+    public LlContainerUpper(Context context, String strWord, String  strLang) {
         super(context);
         this.context=context;
         this.strWord=strWord;
@@ -20,7 +20,7 @@ public class ContainerUpper extends LinearLayout {
         onCreate();
     }
 
-    public ContainerUpper(Context context, String strWord) {
+    public LlContainerUpper(Context context, String strWord) {
         super(context);
         this.context=context;
         this.strWord=strWord;

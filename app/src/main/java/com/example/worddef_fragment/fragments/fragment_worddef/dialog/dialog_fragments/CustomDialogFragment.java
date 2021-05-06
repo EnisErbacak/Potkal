@@ -22,8 +22,8 @@ public interface CustomDialogFragment {
     ArrayList<TdkWord> getTdkWordList();
     ProgressBar getPbTdk();
 
-    Word getWord();
-    void setWord(Word word);
+    Word getWordObj();
+    void setWordObj(Word wordObj);
 
     void removeEtWrdTxtWtcher();
     void reAttachEtWrdListener();

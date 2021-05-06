@@ -8,10 +8,10 @@ import com.example.worddef_fragment.R;
 import com.example.worddef_fragment.fragments.fragment_worddef.FragmentWordDef;
 import com.example.worddef_fragment.fragments.fragment_worddef.builder.data.Word;
 import com.example.worddef_fragment.fragments.fragment_worddef.builder.data.operator.WordOperator;
-import com.example.worddef_fragment.fragments.fragment_worddef.views.container.detailed.ContainerLower;
-import com.example.worddef_fragment.fragments.fragment_worddef.views.container.detailed.ContainerMain;
-import com.example.worddef_fragment.fragments.fragment_worddef.views.container.detailed.ContainerUpper;
-import com.example.worddef_fragment.fragments.processes.operator.FragmentOperatorFactory;
+import com.example.worddef_fragment.fragments.fragment_worddef.views.container.detailed.LlContainerLower;
+import com.example.worddef_fragment.fragments.fragment_worddef.views.container.detailed.LlContainerMain;
+import com.example.worddef_fragment.fragments.fragment_worddef.views.container.detailed.LlContainerUpper;
+import com.example.worddef_fragment.fragments.fragment_wordset.manager.WordsetManager;
 import com.example.worddef_fragment.other.ScannerActivity;
 
 import org.json.JSONException;
@@ -93,7 +93,7 @@ public class UiBuilderSimple implements UiBuilder {
 
     @Override
     public void buildByCreateDateAsc() {
-        JSONObject jObj=new FragmentOperatorFactory().create("wordset",context).get(setName);
+        JSONObject jObj=new  WordsetManager().operate(context).get(setName);
         LinearLayout ll=(LinearLayout) getCleanedPanel(context);
         ArrayList<String> keys= getKeyList(jObj.keys(), false);
         createView(ll, keys, jObj);
@@ -101,7 +101,7 @@ public class UiBuilderSimple implements UiBuilder {
 
     @Override
     public void buildByCreateDateDsc() {
-        JSONObject jObj=new FragmentOperatorFactory().create("wordset",context).get(setName);
+        JSONObject jObj=new WordsetManager().operate(context).get(setName);
         LinearLayout ll=(LinearLayout) getCleanedPanel(context);
         ArrayList<String> keys= getKeyList(jObj.keys(), true);
         createView(ll, keys, jObj);
@@ -109,7 +109,7 @@ public class UiBuilderSimple implements UiBuilder {
 
     @Override
     public void buildByAlphabeticalAsc() {
-        JSONObject jObj=new FragmentOperatorFactory().create("wordset",context).get(setName);
+        JSONObject jObj=new WordsetManager().operate(context).get(setName);
         LinearLayout ll=(LinearLayout) getCleanedPanel(context);
         ArrayList<String> keys=sortAlphabetical(getKeyList(jObj.keys(), false),false);
 
@@ -118,7 +118,7 @@ public class UiBuilderSimple implements UiBuilder {
 
     @Override
     public void buildByAlphabeticalDsc() {
-        JSONObject jObj = new FragmentOperatorFactory().create("wordset", context).get(setName);
+        JSONObject jObj = new WordsetManager().operate(context).get(setName);
         LinearLayout ll = (LinearLayout) getCleanedPanel(context);
         ArrayList<String> keys = sortAlphabetical(getKeyList(jObj.keys(), false), true);
 
@@ -136,8 +136,8 @@ public class UiBuilderSimple implements UiBuilder {
                 je.printStackTrace();
                 break;
             }
-            ll.addView(new ContainerMain(context, new ContainerUpper(context, word.getWrd())
-                    , new ContainerLower(context, word.getDef())));
+            ll.addView(new LlContainerMain(context, new LlContainerUpper(context, word.getWrd())
+                    , new LlContainerLower(context, word.getDef())));
         }
     }
 

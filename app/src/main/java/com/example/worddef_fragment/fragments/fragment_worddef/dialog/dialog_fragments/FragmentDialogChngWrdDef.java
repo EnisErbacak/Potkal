@@ -21,16 +21,13 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.worddef_fragment.R;
 import com.example.worddef_fragment.fragments.fragment_worddef.builder.ui.operator.BuilderEditor;
-import com.example.worddef_fragment.fragments.processes.operator.FragmentOperator;
-import com.example.worddef_fragment.fragments.processes.operator.FragmentOperatorFactory;
 import com.example.worddef_fragment.fragments.fragment_worddef.builder.data.Word;
 import com.example.worddef_fragment.fragments.fragment_worddef.builder.data.operator.WordOperator;
+import com.example.worddef_fragment.fragments.fragment_worddef.manager.WorddefManager;
+import com.example.worddef_fragment.fragments.fragment_worddef.process.WordDefOperator;
 import com.example.worddef_fragment.tdk.TdkBtnLstner;
 import com.example.worddef_fragment.tdk.TdkTxtWatcher;
 import com.example.worddef_fragment.tdk.process.TdkWord;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -48,17 +45,16 @@ public class FragmentDialogChngWrdDef extends AppCompatDialogFragment implements
     private LinearLayout pnlWrdDefVrt;
 
     private WordOperator wordOperator;
-    private FragmentOperator wordDefOperator;
 
     private View anchor;
     private String setName;
     private String wordStr;
 
-
     private ArrayList<TdkWord> tdkWordList;
 
     private TdkTxtWatcher etWrdTxtWtchr;
-    private Word word;
+    private Word wordObj;
+    private WordDefOperator wordDefOperator;
 
     //private ArrayList<String> defList;
 
@@ -121,9 +117,9 @@ public class FragmentDialogChngWrdDef extends AppCompatDialogFragment implements
 
 
 
-        this.wordDefOperator =new FragmentOperatorFactory().create("worddef",getContext());
+        this.wordDefOperator =new WorddefManager().operate(getContext());
         wordStr= ((TextView) anchor).getText().toString();
-        word=getWord();
+        wordObj = getWordObj();
 
         setBckGrnd();
         setDefault();
@@ -140,29 +136,21 @@ public class FragmentDialogChngWrdDef extends AppCompatDialogFragment implements
     }
 
     private void setDefault() {
-        etDlgChngWrd.setText(word.getWrd());
-        etDlgChngDef.setText(word.getDef());
-        etDlgChngLang.setText(word.getLang());
-        etDlgChngKind.setText(word.getKind());
-        etDlgChngExmp.setText(word.getExmp());
+        etDlgChngWrd.setText(wordObj.getWrd());
+        etDlgChngDef.setText(wordObj.getDef());
+        etDlgChngLang.setText(wordObj.getLang());
+        etDlgChngKind.setText(wordObj.getKind());
+        etDlgChngExmp.setText(wordObj.getExmp());
     }
 
-    public Word getWord() {
-        return  word;
-        /*
-        JSONObject job= wordDefOperator.get(wordStr);
-        try {
-            job.getJSONObject(wordStr);
-        }catch (JSONException je){je.printStackTrace();}
-        word= wordOperator.convert2Word(wordDefOperator.get(wordStr), wordStr);
-        return word;
-
-         */
+    public Word getWordObj() {
+        wordObj= wordOperator.convert2Word(wordDefOperator.get(wordStr), wordStr);
+        return wordObj;
     }
 
     @Override
-    public void setWord(Word word) {
-        this.word=word;
+    public void setWordObj(Word wordObj) {
+        this.wordObj = wordObj;
     }
 
     @Override
@@ -251,27 +239,21 @@ public class FragmentDialogChngWrdDef extends AppCompatDialogFragment implements
 
             if(isEmpty(newWord))
                 Toast.makeText(view.getContext(),"PLEASE INPUT WORD!",Toast.LENGTH_SHORT).show();
-
             else {
-
-
-                    //editor.change2(oldWord, newWord, newDef);
-                    //new BuilderEditor().getUiEditor(getContext(), setName).updateScreen();
-                    //new WordDefEditor2(getContext()).get(oldWord);
-                /*
-                    newWordObj=new Word();
-                    newWordObj.setWrd(getEtWrd().getText().toString());
-                    newWordObj.setLang(getEtLang().getText().toString());
-                    newWordObj.setKind(getEtKind().getText().toString());
-                    newWordObj.setExmp(getEtExmp().getText().toString());
-                    newWordObj.setDef(getEtDef().getText().toString());
-                 */
-                    new FragmentOperatorFactory().create("worddef", getContext()).rename(oldWord,newWord);
-                    //new WordDefOperator(getContext()).rename(oldWord, newWord);
+                fillWordObj();
+                if(new WorddefManager().operate(getContext()).change(wordStr,getEtWrd().getText().toString(), wordObj)) {
                     new BuilderEditor().getUiEditor(getContext(), setName).updateScreen();
                     dialog.dismiss();
-
+                }
             }
+        }
+
+        private void fillWordObj() {
+            wordObj.setDef(getEtDef().getText().toString());
+            if(! getEtExmp().getText().toString().equals("")) wordObj.setExmp(getEtExmp().getText().toString());
+            if(! getEtKind().getText().toString().equals("")) wordObj.setKind(getEtKind().getText().toString());
+            if(! getEtLang().getText().toString().equals("")) wordObj.setLang(getEtLang().getText().toString());
+            wordObj.setWrd(getEtWrd().getText().toString());
         }
 
         private boolean isEmpty(String txt) {

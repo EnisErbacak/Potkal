@@ -7,8 +7,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.worddef_fragment.R;
 import com.example.worddef_fragment.fragments.fragment_worddef.dialog.dialog_fragments.CustomDialogFragment;
-import com.example.worddef_fragment.cloud_service.gDrive.task.task_super.TaskRunner;
 
 public class TdkTxtWatcher implements TextWatcher {
 
@@ -30,39 +30,19 @@ public class TdkTxtWatcher implements TextWatcher {
 
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        /*
-        while(charSequence.length()>0) {
-            if(turn1) {
-                fetcher1.interrupt();
-                turn1=false;
-                break;
-            }
-
-            else {
-                if(fetcher2!=null) {
-                    fetcher2.interrupt();
-                }
-                turn1 = true;
-                break;
-            }
-        }
-         */
     }
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
         pbTdk.setAlpha(1);
+        btnDsply.setText(btnDsply.getContext().getResources().getString(R.string.tdk_results));
     }
 
     @Override
     public void afterTextChanged(Editable editable) {
         wrd=editable.toString();
-
         while(!wrd.equals("")) {
             if (turn1) {
-                pbTdk.setAlpha(1);
-                pbTdk.setVisibility(View.VISIBLE);
-
                 if(fetcher2!=null)
                     if(! fetcher2.isInterrupted())
                         fetcher2.interrupt();
@@ -72,9 +52,6 @@ public class TdkTxtWatcher implements TextWatcher {
                 turn1=false;
                 break;
             } else {
-                pbTdk.setAlpha(1);
-                pbTdk.setVisibility(View.VISIBLE);
-
                 if(fetcher1!=null)
                     if(! fetcher1.isInterrupted())
                         fetcher1.interrupt();
@@ -86,8 +63,6 @@ public class TdkTxtWatcher implements TextWatcher {
             }
         }
     }
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private class Fetcher1 extends Thread {
@@ -107,8 +82,8 @@ public class TdkTxtWatcher implements TextWatcher {
         public void run() {
             try {
                 System.out.println("++++++T1 STARTED");
-                this.sleep(1000);
-                new TdkManager(wrd, customDialogFragment).search();
+                this.sleep(1500);
+                new TdkManager(wrd, customDialogFragment,btnDsply,pbTdk).search();
                 System.out.println("++++++1  DONE");
                 this.interrupt();
             } catch (InterruptedException e) {
@@ -135,8 +110,8 @@ public class TdkTxtWatcher implements TextWatcher {
         public void run() {
             try {
                 System.out.println("------T2 STARTED");
-                this.sleep(1000);
-                new TdkManager(wrd, customDialogFragment).search();
+                this.sleep(1500);
+                new TdkManager(wrd, customDialogFragment,btnDsply,pbTdk).search();
                 System.out.println("------T2   DONE");
                 this.interrupt();
             } catch (InterruptedException e) {

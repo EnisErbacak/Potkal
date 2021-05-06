@@ -47,12 +47,12 @@ public class PopupTopMenu extends PopupMenu {
 
                 case 0:
                     String srcPath=anchor.getContext().getFilesDir().getPath() + File.separator + "wordset_files";
-                    new CloudManagerFactory().create("gdrive",pb).backup(context, srcPath);
+                    new CloudManagerFactory().create(CloudManagerFactory.GDRIVE,pb).backup(context, srcPath);
                     break;
 
                 case 1:
                     String srcPath2=anchor.getContext().getFilesDir().getPath() + File.separator + "unzip_files";
-                    if(new CloudManagerFactory().create("gdrive", pb).restore(context, srcPath2))
+                    if(new CloudManagerFactory().create(CloudManagerFactory.GDRIVE, pb).restore(context, srcPath2))
                         new UiEdtrWrdSet(context).updateScrn(FragmentWordSet.ORDER_BY);
                     break;
 

@@ -20,6 +20,6 @@ public class TvDef extends TvWrdDef {
     }
 
     private int getTxtSize() {
-        return Integer.valueOf(new SPEditor().getValue(getContext(), SPEditor.DEF_TXT_SIZE));
+        return Integer.valueOf(new SPEditor().getValue(getContext(), SPEditor.TXT_SIZE_DEF));
     }
 }

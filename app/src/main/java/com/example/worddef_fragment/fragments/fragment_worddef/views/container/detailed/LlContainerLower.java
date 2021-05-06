@@ -8,12 +8,12 @@ import com.example.worddef_fragment.fragments.fragment_worddef.views.txtView.TvD
 import com.example.worddef_fragment.fragments.fragment_worddef.views.txtView.TvExmp;
 import com.example.worddef_fragment.fragments.fragment_worddef.views.txtView.TvKind;
 
-public class ContainerLower extends LinearLayout {
+public class LlContainerLower extends LinearLayout {
     private TextView tvDef,tvExmp, tvKind;
     private String strDef, strExmp, strKind;
     private TextView[] tvArr;
     private Context context;
-    public ContainerLower(Context context, String strKind, String strDef, String strExmp) {
+    public LlContainerLower(Context context, String strKind, String strDef, String strExmp) {
         super(context);
         this.context=context;
         this.strDef=strDef;
@@ -22,7 +22,7 @@ public class ContainerLower extends LinearLayout {
         onCreate();
     }
 
-    public ContainerLower(Context context, String strDef) {
+    public LlContainerLower(Context context, String strDef) {
         super(context);
         this.context=context;
         this.strDef=strDef;

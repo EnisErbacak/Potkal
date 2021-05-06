@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.io.File;
 
-public class PathWordSet implements PathPicker {
+public class PathWordset implements CustomPath {
     private final String FOLDERNAME="wordset_files";
 
     @Override

@@ -5,7 +5,9 @@ import android.content.Context;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
+import com.example.worddef_fragment.R;
 import com.example.worddef_fragment.fragments.fragment_worddef.dialog.dialog_fragments.CustomDialogFragment;
+import com.example.worddef_fragment.other.ScannerActivity;
 import com.example.worddef_fragment.tdk.process.Fetch;
 import com.example.worddef_fragment.tdk.process.Parse;
 import com.example.worddef_fragment.tdk.process.TdkWord;
@@ -24,12 +26,12 @@ public class TdkManager {
 
     private ArrayList<TdkWord> tdkWordList;
 
-    public TdkManager(String keyWord, CustomDialogFragment customDialogFragment) {
-        this.customDialogFragment = customDialogFragment;
+    public TdkManager(String keyWord,CustomDialogFragment customDialogFragment, Button btnDisplayTdk, ProgressBar pbTdk) {
+        this.customDialogFragment=customDialogFragment;
         this.keyWord=keyWord;
-        this.btnDisplayTdk=customDialogFragment.getBtnDsplyTdk();
-        this.context=customDialogFragment.getContext();
-        pbTdk=customDialogFragment.getPbTdk();
+        this.btnDisplayTdk=btnDisplayTdk;
+        this.context=btnDisplayTdk.getContext();
+        this.pbTdk=pbTdk;
     }
 
     public void search() {
@@ -43,21 +45,24 @@ public class TdkManager {
                 tdkWordList=parse.parseResult(fetch.fetchWord(keyWord));
 
                 if(tdkWordList.size()!=0) {
-                    ((Activity) context).runOnUiThread(new Runnable() {
+                    new ScannerActivity().scanForActivity(context).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             btnDisplayTdk.setClickable(true);
                             btnDisplayTdk.setEnabled(true);
+                            btnDisplayTdk.setText(context.getResources().getString(R.string.tdk_results));
                             pbTdk.setAlpha(0);
+
                             customDialogFragment.setTdkWordList(tdkWordList);
                         }
                     });
                 }else {
-                    ((Activity) context).runOnUiThread(new Runnable() {
+                    new ScannerActivity().scanForActivity(context).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             btnDisplayTdk.setClickable(false);
                             btnDisplayTdk.setEnabled(false);
+                            btnDisplayTdk.setText("");
                             pbTdk.setAlpha(0);
                         }
                     });

@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.widget.TextView;
 
 import com.example.worddef_fragment.R;
+import com.example.worddef_fragment.file.shared_preferences.SPEditor;
 import com.example.worddef_fragment.fragments.fragment_test.test_screen.views.buttons.ButtonChoice;
 
 public class Choice {
@@ -89,21 +90,18 @@ public class Choice {
                 else buttonChoice.setBackgroundColor(Color.RED);
             }
          else {
-            buttonChoice.setBackgroundColor(buttonChoice.getContext().getResources().getColor(R.color.choice_tint));
+            buttonChoice.setBackgroundColor(Integer.parseInt(new SPEditor().getValue(buttonChoice.getContext(), SPEditor.COL_TEST_CHOICE_BG)));
         }
     }
 
     public void select() {
-        //if( isSelected==false) {
         if(isSelectable()) {
             testScreen.makeAllUnselectable();
             setSelected(true);
             if (isCorrect) {
                 testScreen.reDraw();
-                //buttonChoice.setBackgroundColor(Color.GREEN);
                 tvScoreCorrect.setText(String.valueOf(Integer.parseInt(tvScoreCorrect.getText().toString()) + 1));
             } else {
-                //buttonChoice.setBackgroundColor(Color.RED);
                 testScreen.reDraw();
                 tvScoreIncorrect.setText(String.valueOf(Integer.parseInt(tvScoreIncorrect.getText().toString()) + 1));
             }

@@ -7,84 +7,94 @@
     android:layout_height="match_parent"
     android:background="#1565C0">
 
-    <LinearLayout
-        android:id="@+id/llTestFirstUpper"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clTestFirstUpperMain"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/bg_rounded_corners_rd30"
-        android:orientation="vertical"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_rounded_corners_rd10"
+        app:layout_constraintBottom_toTopOf="@+id/btnStartTest"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tvQstnType"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/llTestFirstUpper"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="@string/choose_question_choice"
-            android:textSize="24sp" />
+            android:layout_margin="15dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <RadioGroup
-            android:id="@+id/rdGrpQType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:checkedButton="@id/rdBtnQWrdDef">
+            <TextView
+                android:id="@+id/tvQstnType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/choose_question_choice"
+                android:textSize="24sp" />
 
-            <RadioButton
-                android:id="@+id/rdBtnQWrdDef"
+            <RadioGroup
+                android:id="@+id/rdGrpQType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/word_definition" />
+                android:layout_margin="10dp"
+                android:checkedButton="@id/rdBtnQWrdDef">
 
-            <RadioButton
-                android:id="@+id/rdBtnQDefWord"
+                <RadioButton
+                    android:id="@+id/rdBtnQWrdDef"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/word_definition" />
+
+                <RadioButton
+                    android:id="@+id/rdBtnQDefWord"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/definition_word" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llTestFirstLower"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="15dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llTestFirstUpper">
+
+            <TextView
+                android:id="@+id/tvTestFirstSlctSets"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/definition_word" />
-        </RadioGroup>
-    </LinearLayout>
+                android:layout_margin="10dp"
+                android:text="@string/select_set"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
 
-    <LinearLayout
-        android:id="@+id/llTestFirstLower"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="15dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/bg_rounded_corners_rd30"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/btnStartTest"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llTestFirstUpper">
-
-        <TextView
-            android:id="@+id/tvTestFirstSlctSets"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="@string/select_set"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp" />
-
-        <ScrollView
-            android:id="@+id/scrollView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp">
-
-            <LinearLayout
-                android:id="@+id/llTestFirstSets"
+            <ScrollView
+                android:id="@+id/scrollView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </ScrollView>
-    </LinearLayout>
+                android:layout_margin="15dp">
+
+                <LinearLayout
+                    android:id="@+id/llTestFirstSets"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </ScrollView>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.example.worddef_fragment.fragments.fragment_test.first_screen.views.BtnStartTest
         android:id="@+id/btnStartTest"

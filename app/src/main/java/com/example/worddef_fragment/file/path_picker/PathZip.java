@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.io.File;
 
-public class PathZip implements PathPicker {
+public class PathZip implements CustomPath {
 
     private final String FOLDERNAME="zip_files";
 

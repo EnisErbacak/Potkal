@@ -65,7 +65,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int listPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-
         convertView= (TextView) new TvGroupTitle(context);
         ((TextView)convertView).setText(titles.get(listPosition));
         ((TextView) convertView).setGravity(Gravity.CENTER_HORIZONTAL);

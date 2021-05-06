@@ -10,12 +10,12 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import com.example.worddef_fragment.fragments.fragment_settings.sections.color.btn.BtnColor;
 import com.example.worddef_fragment.fragments.fragment_settings.element.textview.TvChild;
 
-public class ClColor extends ConstraintLayout {
+public class ClColorContainer extends ConstraintLayout {
     private TvChild tvChild;
     private BtnColor btnColor;
     private ConstraintSet constraintSet;
 
-    public ClColor(Context context, String txt,String prefKey) {
+    public ClColorContainer(Context context, String txt, String prefKey) {
         super(context);
         this.tvChild =new TvChild(context,txt);
         this.btnColor=new BtnColor(context, prefKey);
@@ -44,7 +44,7 @@ public class ClColor extends ConstraintLayout {
 
         constraintSet.clone(this);
 
-        constraintSet.connect(tvChild.getId(), ConstraintSet.START,  this.getId(),ConstraintSet.START);
+        constraintSet.connect(tvChild.getId(), ConstraintSet.START,  this.getId(),ConstraintSet.START,50);
         constraintSet.connect(tvChild.getId(),ConstraintSet.BOTTOM,  this.getId(),ConstraintSet.BOTTOM);
         constraintSet.connect(tvChild.getId(),ConstraintSet.TOP,     this.getId(),ConstraintSet.TOP);
 

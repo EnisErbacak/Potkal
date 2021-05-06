@@ -5,10 +5,10 @@ import android.widget.Toast;
 
 import com.example.worddef_fragment.other.ScannerActivity;
 
-public class Reaction {
+public class Reactor {
     private Context context;
 
-    public Reaction(Context context) {
+    public Reactor(Context context) {
         this.context = context;
     }
 

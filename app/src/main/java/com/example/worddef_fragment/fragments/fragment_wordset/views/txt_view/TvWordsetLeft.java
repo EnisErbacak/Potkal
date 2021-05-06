@@ -62,7 +62,7 @@ public class TvWordsetLeft extends androidx.appcompat.widget.AppCompatTextView {
     }
 
     private int getTxtSize() {
-        return Integer.valueOf(new SPEditor().getValue(context, SPEditor.SET_TXT_SIZE));
+        return Integer.valueOf(new SPEditor().getValue(context, SPEditor.TXT_SIZE_SET));
     }
 
     private class TxtViewWrdSetLngClckLstnr implements View.OnClickListener {
